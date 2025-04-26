@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:controller="com.example.libmaster.Controllers.AddMemberController"
+      fx:id="root"
+      prefHeight="800.0" prefWidth="1200.0"
+      styleClass="root"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml"/>
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+
+                <!-- User avatar -->
+                <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
+                    <children>
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/profile.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+
+                <!-- Form Title -->
+                <Label layoutX="33.0" layoutY="98.0" text="Add New Member">
+                    <font>
+                        <Font name="Futura Bold" size="21.0"/>
+                    </font>
+                </Label>
+
+                <!-- Add Member Form -->
+                <VBox layoutX="33.0" layoutY="140.0" spacing="12.0" prefWidth="400.0">
+                    <children>
+                        <TextField fx:id="nameField" promptText="Full Name" prefHeight="35.0"/>
+                        <TextField fx:id="phoneField" promptText="Phone Number" prefHeight="35.0"/>
+                        <DatePicker fx:id="dobPicker" promptText="Date of Birth" prefHeight="35.0"/>
+                        <ComboBox fx:id="genderBox" promptText="Gender" prefHeight="35.0"/>
+
+                        <HBox spacing="10.0">
+                            <children>
+                                <Button fx:id="btn_addMember" text="Add Member" prefWidth="150.0"
+                                        styleClass="btn_addBook"/>
+                                <Button fx:id="btn_clearForm" text="Clear" prefWidth="80.0"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+            </children>
+        </Pane>
+    </children>
+</HBox>
