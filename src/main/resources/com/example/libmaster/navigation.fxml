@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="800.0" prefWidth="243.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.NavigationController">
+    <children>
+        <AnchorPane fx:id="side_ankerpane" prefHeight="800.0" prefWidth="461.0" styleClass="side_ankerpane" stylesheets="@style.css">
+            <children>
+                <Pane fx:id="inner_pane" layoutX="16.0" layoutY="31.0" prefHeight="53.0" prefWidth="200.0" styleClass="inner_pane" stylesheets="@style.css">
+                    <children>
+                        <ImageView fitHeight="96.0" fitWidth="128.0" layoutX="40.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/LibMaster.png" />
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Button fx:id="btn_dashboard" layoutX="14.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleDashboardButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="DASHBOARD" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/menu.png" />
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btn_dashboard1" layoutX="-1.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleLibraryButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="LIBRARY" textFill="WHITE">
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/library.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_dashboard11" layoutX="12.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleMemberListButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="MEMBER LIST" textFill="WHITE">
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/user-group.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_dashboard111" layoutX="5.0" layoutY="656.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="LOG OUT" textFill="WHITE">
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/log-out.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_dashboard112" layoutX="-1.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleRequestButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="REQUEST" textFill="WHITE">
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../image/book-request.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_dashboard1121" layoutX="13.0" layoutY="372.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="BOOK LOAN" textFill="WHITE" onAction="#handleBooksOnLoanButton">
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/explore.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
