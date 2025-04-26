@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<StackPane xmlns="http://javafx.com/javafx/23.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.libmaster.Controllers.LoginController"
+           prefWidth="1200.0" prefHeight="800.0"
+           style="-fx-background-color: linear-gradient(to bottom, #ffffff, #e0f7fa);">
+
+    <VBox alignment="CENTER" spacing="15.0" maxWidth="400.0">
+        <padding>
+            <Insets top="40" bottom="40" left="50" right="50"/>
+        </padding>
+        <children>
+
+            <Label text="Welcome Back!">
+                <font>
+                    <Font name="Arial Bold" size="26"/>
+                </font>
+            </Label>
+
+            <TextField fx:id="usernameField" promptText="Enter username"
+                       prefHeight="40" maxWidth="300" style="-fx-background-radius: 10;"/>
+
+            <PasswordField fx:id="passwordField" promptText="Enter password"
+                           prefHeight="40" maxWidth="300" style="-fx-background-radius: 10;"/>
+
+            <Button fx:id="loginButton" text="Login" onAction="#handleLogin"
+                    prefWidth="180" style="-fx-background-color: #00bcd4; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8;"/>
+
+            <Hyperlink text="Forgot Password?"
+                       style="-fx-text-fill: #0288d1; -fx-underline: true;"/>
+
+        </children>
+    </VBox>
+</StackPane>
