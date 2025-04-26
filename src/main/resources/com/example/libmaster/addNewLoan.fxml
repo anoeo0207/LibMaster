@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddNewLoanController">
+    <children>
 
-</AnchorPane>
+        <fx:include source="navigation.fxml" />
+
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+                <Label layoutX="33.0" layoutY="98.0" text="Add New Book Loan">
+                    <font>
+                        <Font name="Futura Bold" size="21.0" />
+                    </font>
+                </Label>
+                <Label layoutX="33.0" layoutY="130.0" text="Enter the book loan details">
+                    <font>
+                        <Font name="Arial" size="15.0" />
+                    </font>
+                </Label>
+
+                <!-- Form Container -->
+                <Pane layoutX="33.0" layoutY="183.0" prefHeight="400.0" prefWidth="909.0" style="-fx-border-color: #e0e0e0; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-padding: 20;">
+                    <children>
+                        <!-- Member Section -->
+                        <Label layoutX="10.0" layoutY="10.0" text="Member Information">
+                     <font>
+                        <Font name="Futura Bold" size="13.0" />
+                     </font></Label>
+                        <Label layoutX="10.0" layoutY="40.0" text="Member ID:" />
+                        <TextField fx:id="memberIdField" layoutX="120.0" layoutY="35.0" prefHeight="30.0" prefWidth="700.0" />
+
+                        <!-- Book Section -->
+                        <Label layoutX="10.0" layoutY="80.0" text="Book Information">
+                     <font>
+                        <Font name="Futura Bold" size="13.0" />
+                     </font></Label>
+                        <Label layoutX="10.0" layoutY="110.0" text="Book ID:" />
+                        <TextField fx:id="bookIdField" layoutX="120.0" layoutY="105.0" prefHeight="30.0" prefWidth="700.0" />
+
+                        <!-- Dates Section -->
+                        <Label layoutX="10.0" layoutY="150.0" text="Loan Dates">
+                     <font>
+                        <Font name="Futura Bold" size="13.0" />
+                     </font></Label>
+                        <Label layoutX="10.0" layoutY="180.0" text="Loan Date:" />
+                        <TextField fx:id="loanDateField" layoutX="120.0" layoutY="175.0" prefHeight="30.0" prefWidth="700.0" promptText="YYYY-MM-DD" />
+
+                        <Label layoutX="10.0" layoutY="220.0" text="Due Date:" />
+                        <TextField fx:id="dueDateField" layoutX="120.0" layoutY="215.0" prefHeight="30.0" prefWidth="700.0" promptText="YYYY-MM-DD" />
+
+                        <!-- Buttons -->
+                        <Button fx:id="btn_submitLoan" layoutX="570.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #4CAF50;" text="Submit" textFill="WHITE">
+                            <font>
+                                <Font name="Futura Bold" size="13.0" />
+                            </font>
+                        </Button>
+
+                        <Button fx:id="btn_cancel" layoutX="700.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #f44336;" text="Cancel" textFill="WHITE">
+                            <font>
+                                <Font name="Futura Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </children>
+</HBox>
