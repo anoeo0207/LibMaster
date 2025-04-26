@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:controller="com.example.libmaster.Controllers.AddMemberController"
+      fx:id="root"
+      prefHeight="800.0" prefWidth="1200.0"
+      styleClass="root"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml"/>
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+
+            <!-- User avatar -->
+            <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
+                <children>
+                    <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0"
+                               pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../../image/profile.png"/>
+                        </image>
+                    </ImageView>
+                </children>
+            </Pane>
+
+            <!-- Title -->
+            <Label layoutX="33.0" layoutY="90.0" text="User Request Management">
+                <font>
+                    <Font name="Futura Bold" size="21.0"/>
+                </font>
+            </Label>
+
+            <!-- Search Field -->
+            <TextField fx:id="searchField" layoutX="33.0" layoutY="130.0" promptText="Search requests..."
+                       prefWidth="300.0" prefHeight="35.0"/>
+
+            <!-- Request Table -->
+            <TableView fx:id="requestTable" layoutX="33.0" layoutY="180.0" prefWidth="620.0" prefHeight="500.0">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="Request ID" prefWidth="80.0"/>
+                    <TableColumn fx:id="userColumn" text="User" prefWidth="140.0"/>
+                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="130.0"/>
+                    <TableColumn fx:id="dateColumn" text="Date Submitted" prefWidth="130.0"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="120.0"/>
+                </columns>
+            </TableView>
+
+            <!-- Request Detail Section -->
+            <VBox layoutX="680.0" layoutY="180.0" spacing="10.0" prefWidth="280.0">
+                <children>
+                    <Label text="Request Detail" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                    <Label fx:id="labelUser" text="User: " wrapText="true"/>
+                    <Label fx:id="labelType" text="Type: " wrapText="true"/>
+                    <Label fx:id="labelDate" text="Date: " wrapText="true"/>
+                    <Label fx:id="labelDescription" text="Description: " wrapText="true"/>
+                </children>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox layoutX="680.0" layoutY="520.0" spacing="10.0">
+                <children>
+                    <Button fx:id="btnApprove" text="Approve" prefWidth="100.0" styleClass="btn-success"/>
+                    <Button fx:id="btnReject" text="Reject" prefWidth="100.0" styleClass="btn-danger"/>
+                </children>
+            </HBox>
+
+        </Pane>
+    </children>
+</HBox>
