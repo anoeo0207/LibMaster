@@ -1,14 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<HBox fx:controller="com.example.libmaster.Controllers.AddBookController"
+      fx:id="root"
+      prefHeight="800.0" prefWidth="1200.0"
+      styleClass="root"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
 
-</AnchorPane>
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml"/>
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+
+                <!-- Avatar -->
+                <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
+                    <children>
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/profile.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+
+                <!-- Title -->
+                <Label layoutX="70.0" layoutY="90.0" text="Add New Book">
+                    <font>
+                        <Font name="Futura" size="24.0"/>
+                    </font>
+                </Label>
+
+                <!-- Book Form Card -->
+                <VBox layoutX="70.0" layoutY="140.0" spacing="18.0" prefWidth="600.0"
+                      style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
+                    <padding>
+                        <Insets top="24" right="24" bottom="24" left="24"/>
+                    </padding>
+
+                    <children>
+
+                        <GridPane hgap="10" vgap="14">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="35"/>
+                                <ColumnConstraints percentWidth="65"/>
+                            </columnConstraints>
+
+                            <children>
+                                <Label text="ISBN:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="isbnField" promptText="Enter ISBN"
+                                           prefHeight="35.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <TextField fx:id="titleField" promptText="Enter book title"
+                                           prefHeight="35.0" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Author:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <TextField fx:id="authorField" promptText="Enter author name"
+                                           prefHeight="35.0" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Category:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="categoryBox" promptText="Select category"
+                                          prefHeight="35.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                <Label text="Quantity:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                <TextField fx:id="quantityField" promptText="Enter quantity"
+                                           prefHeight="35.0" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                                <Label text="Description:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                                <TextArea fx:id="descriptionArea" promptText="Enter book description"
+                                          prefHeight="80.0" wrapText="true"
+                                          GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                                <Label text="Cover Image:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                                <HBox spacing="10" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                                    <children>
+                                        <Button fx:id="btn_selectImage" text="Choose Image"/>
+                                        <ImageView fx:id="coverPreview" fitHeight="50.0" fitWidth="40.0"
+                                                   preserveRatio="true"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+
+                        <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                            <children>
+                                <Button onAction="#handleReturnBtn"
+                                        fx:id="btn_clearForm" text="Return"
+                                        styleClass="btn-secondary" prefWidth="100"/>
+                                <Button fx:id="btn_addBook" text="Add Book"
+                                        styleClass="btn-primary" prefWidth="140"/>
+                            </children>
+                        </HBox>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </Pane>
+    </children>
+</HBox>
