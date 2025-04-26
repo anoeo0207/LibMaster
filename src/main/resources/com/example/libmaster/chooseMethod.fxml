@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddMemberController">
+
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml" />
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+                <Label layoutX="323.0" layoutY="100.0" text="Add New Item to Library">
+                    <font>
+                        <Font name="Futura Bold" size="24.0" />
+                    </font>
+                </Label>
+
+                <VBox alignment="CENTER" layoutX="380.0" layoutY="160.0" spacing="20.0">
+                    <children>
+                        <Button fx:id="btn_addViaApi" onAction="#handleAddViaApi" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Add via API" />
+
+                        <Button fx:id="btn_customAdd" onAction="#handleCustomAdd" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Custom Add" />
+
+                        <Button fx:id="btn_back" onAction="#handleBack" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #9E9E9E; -fx-text-fill: white;" text="Back" />
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
+</HBox>
