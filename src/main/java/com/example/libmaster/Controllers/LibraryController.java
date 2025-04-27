@@ -2,94 +2,66 @@ package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Main;
 import com.example.libmaster.Models.Book;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.concurrent.Task;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 
 
 public class LibraryController {
 
+    private static final String URL = "jdbc:mysql://localhost:3306/LibMasterServer";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    @FXML
+    private TableView<Book> bookTable;
+    @FXML
+    private TableColumn<Book, String> isbnColumn;
+    @FXML
+    private TableColumn<Book, String> titleColumn;
+    @FXML
+    private TableColumn<Book, String> authorColumn;
+    @FXML
+    private TableColumn<Book, String> categoryColumn;
+    @FXML
+    private TableColumn<Book, Integer> quantityColumn;
     @FXML
     private ImageView bookCoverImage;
 
     @FXML
     private Label labelTitle;
-
     @FXML
     private Label labelAuthor;
-
     @FXML
     private Label labelISBN;
-
     @FXML
     private Label labelCategory;
-
     @FXML
     private Label labelDescription;
-
-
-    @FXML
-    private TableView<Book> bookTable;
-
-    @FXML
-    private TableColumn<Book, String > isbnColumn;
-
-    @FXML
-    private TableColumn<Book, String> titleColumn;
-
-    @FXML
-    private TableColumn<Book, String> authorColumn;
-
-    @FXML
-    private TableColumn<Book, String> genreColumn;
-
-    @FXML
-    private TableColumn<Book, String>  quantityColumn;
-
-    @FXML
-    private TableColumn<Book, String> publishedDateColumn;
-
-    @FXML
-    private TableColumn<Book, String> imageColumn;
-
-    @FXML
-    private TableColumn<Book, String> categoryColumn;
-
     @FXML
     private TextField searchField;
 
-    private static final String api = "https://www.googleapis.com/books/v1/volumes?q=";
-
     @FXML
-    private void handleAddNewBookBtn(ActionEvent event) throws IOException {
-        Main.changeScene("addBookChoice.fxml");
-    }
-
-    @FXML
-    public void initialize() {
+    private void initialize() {
         titleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTitle()));
         authorColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAuthor()));
         isbnColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIsbn()));
         categoryColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
+        quantityColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getQuantity()));
 
         searchField.setOnAction(event -> {
             String keyword = searchField.getText().trim();
             if (!keyword.isEmpty()) {
-                fetchBooks(keyword);
+                fetchBooks(keyword); // Fetch books based on search
             }
         });
 
@@ -99,7 +71,67 @@ public class LibraryController {
             }
         });
 
-        fetchBooks("harry potter");
+        fetchBooks("");
+    }
+
+
+    private void loadBooks() {
+        ObservableList<Book> books = FXCollections.observableArrayList();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String sql = "SELECT isbn, title, author, category, quantity FROM books";
+            try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+                while (rs.next()) {
+                    String isbn = rs.getString("isbn");
+                    String title = rs.getString("title");
+                    String author = rs.getString("author");
+                    String category = rs.getString("category");
+                    int quantity = rs.getInt("quantity");
+                    books.add(new Book(isbn, title, author, category, quantity));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        bookTable.setItems(books);
+    }
+
+    @FXML
+    private void handleAddNewBookBtn(ActionEvent event) throws IOException {
+        Main.changeScene("addBookChoice.fxml");
+    }
+
+    public void fetchBooks(String keyword) {
+        ObservableList<Book> books = FXCollections.observableArrayList();
+
+        String sql = "SELECT isbn, title, author, category, quantity, image, description FROM books WHERE " +
+                "isbn LIKE ? OR title LIKE ? OR author LIKE ? OR category LIKE ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                String searchQuery = "%" + keyword + "%";
+                stmt.setString(1, searchQuery);
+                stmt.setString(2, searchQuery);
+                stmt.setString(3, searchQuery);
+                stmt.setString(4, searchQuery);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        String isbn = rs.getString("isbn");
+                        String title = rs.getString("title");
+                        String author = rs.getString("author");
+                        String category = rs.getString("category");
+                        int quantity = rs.getInt("quantity");
+                        String image = rs.getString("image");
+                        String description = rs.getString("description");
+                        books.add(new Book(isbn, title, author, category, quantity, description, image));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        bookTable.setItems(books);
     }
 
     private void showBookDetails(Book book) {
@@ -107,88 +139,18 @@ public class LibraryController {
         labelAuthor.setText("Author: " + book.getAuthor());
         labelISBN.setText("ISBN: " + book.getIsbn());
         labelCategory.setText("Category: " + book.getCategory());
-
-        // Nếu Book có thêm trường description và thumbnail
         labelDescription.setText("Description: " + (book.getDescription() != null ? book.getDescription() : "No description"));
 
-        if (book.getThumbnailUrl() != null && !book.getThumbnailUrl().isEmpty()) {
-            bookCoverImage.setImage(new Image(book.getThumbnailUrl(), true));
+        String imageUrl = book.getImage();
+        System.out.println(imageUrl);
+
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Image image = new Image(imageUrl);
+            bookCoverImage.setImage(image);
         } else {
-            bookCoverImage.setImage(null); // Hoặc ảnh mặc định
+            Image defaultImage = new Image("picture.png");
+            bookCoverImage.setImage(defaultImage);
         }
-    }
-
-
-    @FXML
-    private void fetchBooks(String keyword) {
-        String apiUrl = api + keyword.replace(" ", "+");
-
-        Task<List<Book>> task = new Task<>() {
-            @Override
-            protected List<Book> call() throws Exception {
-                List<Book> bookList = new ArrayList<>();
-                URL url = new URL(apiUrl);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                JSONObject json = new JSONObject(response.toString());
-                JSONArray items = json.optJSONArray("items");
-                if (items != null) {
-                    for (int i = 0; i < Math.min(10, items.length()); i++) {
-                        JSONObject bookInfo = items.getJSONObject(i).getJSONObject("volumeInfo");
-                        String title = bookInfo.optString("title", "No Title");
-                        JSONArray authors = bookInfo.optJSONArray("authors");
-                        String author = (authors != null) ? authors.join(", ").replace("\"", "") : "Unknown";
-                        String isbn = "No information";
-                        JSONArray identifiers = bookInfo.optJSONArray("industryIdentifiers");
-                        if (identifiers != null && identifiers.length() > 0) {
-                            isbn = identifiers.getJSONObject(0).optString("identifier", "N/A");
-                        }
-                        String category = "Uncategorized";
-                        JSONArray categories = bookInfo.optJSONArray("categories");
-                        if (categories != null) {
-                            category = categories.join(", ").replace("\"", "");
-                        }
-
-                        String description = bookInfo.optString("description", "No description");
-                        String[] words = description.split("\\s+");
-
-                        if (words.length > 30) {
-                            // Cắt chỉ lấy 30 từ đầu tiên
-                            description = String.join(" ", java.util.Arrays.copyOfRange(words, 0, 30)) + "...";
-                        }
-
-                        String thumbnailUrl = "";
-                        if (bookInfo.has("imageLinks")) {
-                            thumbnailUrl = bookInfo.getJSONObject("imageLinks").optString("thumbnail", "");
-                        }
-
-                        bookList.add(new Book(title, author, isbn, category, description, thumbnailUrl ));
-                    }
-                }
-                return bookList;
-            }
-
-            @Override
-            protected void succeeded() {
-                bookTable.getItems().setAll(getValue());
-            }
-
-            @Override
-            protected void failed() {
-                System.out.println("❌ Error: " + getException().getMessage());
-            }
-        };
-
-        new Thread(task).start();
     }
 
     @FXML
