@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.MagazineTableController">
+    <children>
+
+        <fx:include source="navigation.fxml" />
+
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+                <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="920.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/profile.png" />
+                    </image>
+                </ImageView>
+
+                <Label layoutX="33.0" layoutY="98.0" text="MAGAZINE">
+                    <font>
+                        <Font name="Futura Bold" size="21.0" />
+                    </font>
+                </Label>
+                <Label layoutX="33.0" layoutY="130.0" text="Track all magazine currently on your library.">
+                    <font>
+                        <Font name="Arial" size="15.0" />
+                    </font>
+                </Label>
+
+                <Button fx:id="btn_addMagazineBtn" layoutX="33.0" layoutY="172.0" onAction="#handleAddMagazineBtn" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: #4CAF50;" text="  Add New Magazine" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/plus.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btn_removeMagazine" layoutX="270.0" layoutY="172.0" onAction="#handleRemoveMagazineBtn" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: #e53935;" text="  Remove Magazine" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/minus.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="Futura Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <TextField fx:id="searchField" layoutX="720.0" layoutY="172.0" prefHeight="30.0" prefWidth="210.0" promptText="Search Magazine ..." />
+
+                <TableView fx:id="MagazineTableView" layoutX="33.0" layoutY="227.0" prefHeight="443.0" prefWidth="905.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
+                        <TableColumn fx:id="titleColumn" prefWidth="197.65728759765625" text="Title" />
+                        <TableColumn fx:id="authorColumn" prefWidth="154.1922607421875" text="Author" />
+                        <TableColumn fx:id="publisherColumn" prefWidth="163.42523193359375" text="Publisher" />
+                        <TableColumn fx:id="quantityColumn" prefWidth="97.4893798828125" text="Quantity" />
+                        <TableColumn fx:id="descriptionColumn" prefWidth="192.0106201171875" text="Description" />
+                    </columns>
+                </TableView>
+                <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="691.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/search.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+
+    </children>
+</HBox>
