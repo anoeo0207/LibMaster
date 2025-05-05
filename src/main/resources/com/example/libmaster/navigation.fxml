@@ -39,7 +39,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btn_dashboard11" layoutX="12.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleMemberListButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="MEMBER LIST" textFill="WHITE">
+                <Button fx:id="btn_dashboard11" layoutX="12.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleMemberListButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="MEMBER LIST" textFill="WHITE">
                     <font>
                         <Font name="Futura Bold" size="13.0" />
                     </font>
@@ -59,7 +59,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btn_dashboard112" layoutX="-1.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleRequestButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="REQUEST" textFill="WHITE">
+                <Button fx:id="btn_dashboard112" layoutX="-1.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleRequestButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="REQUEST" textFill="WHITE">
                     <font>
                         <Font name="Futura Bold" size="13.0" />
                     </font>
@@ -69,7 +69,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btn_dashboard1121" layoutX="13.0" layoutY="372.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="BOOK LOAN" textFill="WHITE" onAction="#handleBooksOnLoanButton">
+                <Button fx:id="btn_dashboard1121" layoutX="13.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleBooksOnLoanButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="BOOK LOAN" textFill="WHITE">
                     <font>
                         <Font name="Futura Bold" size="13.0" />
                     </font>
@@ -81,6 +81,43 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <Button fx:id="btn_dashboard11211" layoutX="9.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleItemsOnLoanButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="ITEM LOAN" textFill="WHITE">
+               <font>
+                  <Font name="Futura Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/lost-items.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button
+                    fx:id="btn_dashboard112111" layoutX="8.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleLibroBotButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="LIBRO BOT" textFill="WHITE">
+               <font>
+                  <Font name="Futura Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/chatbot.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_dashboard1121111" layoutX="10.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleMoreAppsButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: transparent;" styleClass="btn_dashboard" stylesheets="@style.css" text="MORE APPS" textFill="WHITE">
+               <font>
+                  <Font name="Futura Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/app-development.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </AnchorPane>
     </children>
