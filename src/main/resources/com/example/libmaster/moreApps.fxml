@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.libmaster.Controllers.MoreAppsController">
+    <children>
+
+        <fx:include source="navigation.fxml" />
+
+        <Pane   styleClass="root" stylesheets="@moreApps.css"
+                prefHeight="800.0" prefWidth="1002.0">
+            <children>
+
+                <!-- Top right avatar -->
+                <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="920.0" layoutY="16.0">
+                    <image>
+                        <Image url="@../../../image/profile.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Organization Header Centered -->
+                <VBox layoutX="100.0" layoutY="60.0" spacing="10" alignment="CENTER">
+                    <children>
+                        <Label text="TechNova">
+                            <font>
+                                <Font name="Futura Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label text="Innovating for Tomorrow">
+                            <font>
+                                <Font name="Arial" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label wrapText="true" maxWidth="800"
+                               text="We develop high-quality, user-friendly software products to empower businesses and individuals across the globe."
+                               styleClass="org-description"/>
+                    </children>
+                </VBox>
+
+                <!-- Feature Apps Title -->
+                <Label layoutX="100.0" layoutY="220.0" text="Our Feature Apps" styleClass="section-title">
+                    <font>
+                        <Font name="Arial" size="18.0"/>
+                    </font>
+                </Label>
+
+                <!-- Apps section -->
+                <HBox layoutX="100.0" layoutY="260.0" spacing="40">
+                    <children>
+
+                        <!-- App 1 -->
+                        <VBox spacing="10" styleClass="app-card" alignment="TOP_CENTER" prefWidth="240.0">
+                            <ImageView fitWidth="240.0" fitHeight="140.0">
+                                <image>
+                                    <Image url="@../../../image/app1.png" />
+                                </image>
+                            </ImageView>
+                            <Label text="App One" styleClass="app-title"/>
+                            <Label text="A powerful task management tool to help you stay organized."
+                                   wrapText="true" maxWidth="220"/>
+                            <Button text="Visit" onAction="#visitAppOne"/>
+                        </VBox>
+
+                        <!-- App 2 -->
+                        <VBox spacing="10" styleClass="app-card" alignment="TOP_CENTER" prefWidth="240.0">
+                            <ImageView fitWidth="240.0" fitHeight="140.0">
+                                <image>
+                                    <Image url="@../../../image/app2.png" />
+                                </image>
+                            </ImageView>
+                            <Label text="App Two" styleClass="app-title"/>
+                            <Label text="Analyze your financial data and make better decisions."
+                                   wrapText="true" maxWidth="220"/>
+                            <Button text="Visit" onAction="#visitAppTwo"/>
+                        </VBox>
+
+                        <!-- App 3 -->
+                        <VBox spacing="10" styleClass="app-card" alignment="TOP_CENTER" prefWidth="240.0">
+                            <ImageView fitWidth="240.0" fitHeight="140.0">
+                                <image>
+                                    <Image url="@../../../image/app3.png" />
+                                </image>
+                            </ImageView>
+                            <Label text="App Three" styleClass="app-title"/>
+                            <Label text="Collaborate with your team in real-time with ease."
+                                   wrapText="true" maxWidth="220"/>
+                            <Button text="Visit" onAction="#visitAppThree"/>
+                        </VBox>
+
+                    </children>
+                </HBox>
+
+            </children>
+        </Pane>
+    </children>
+</HBox>
