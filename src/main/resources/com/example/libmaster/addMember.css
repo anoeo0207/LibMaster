@@ -1,0 +1,19 @@
+.root {
+    -fx-background-color: #f5f6fa;
+}
+
+.btn-primary {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 16 8 16;
+}
+
+.btn-secondary {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 16 8 16;
+}
