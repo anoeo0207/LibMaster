@@ -37,12 +37,15 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tableView" layoutX="33.0" layoutY="227.0" prefHeight="443.0" prefWidth="905.0">
+            <TableView fx:id="memberTable" layoutX="33.0" layoutY="227.0" prefHeight="443.0" prefWidth="905.0">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="134.4122314453125" text="ID" />
-                  <TableColumn fx:id="nameColumn" prefWidth="216.5" text="Name" />
-                  <TableColumn fx:id="phoneColumn" prefWidth="309.0" text="Phone " />
-                  <TableColumn fx:id="bookIssueColumn" minWidth="0.0" prefWidth="245.0" text="Books borrowed " />
+                  <TableColumn fx:id="idColumn" prefWidth="72.89761352539062" text="ID" />
+                  <TableColumn fx:id="nameColumn" prefWidth="146.09915161132812" text="Name" />
+                  <TableColumn fx:id="genderColumn" minWidth="0.0" prefWidth="157.0" text="Gender" />
+                  <TableColumn fx:id="dateOfBirthColumn" minWidth="0.0" prefWidth="158.0" text="Date of birth" />
+                  <TableColumn fx:id="phoneColumn" prefWidth="157.0" text="Phone" />
+                  <TableColumn fx:id="emailColumn" prefWidth="110.5" text="Email" />
+                  <TableColumn fx:id="booksBorrowedColumn" prefWidth="102.0" text="Books Borrowed" />
                </columns>
             </TableView>
             <Button fx:id="btn_addBook" layoutX="723.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleAddMemberButton" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #C0C0C0;" styleClass="btn_addBook" stylesheets="@style.css" text="Add New Member" textFill="WHITE">
@@ -59,7 +62,7 @@
             </Button>
             <Pane layoutX="441.0" layoutY="172.0" prefHeight="39.0" prefWidth="258.0">
                <children>
-                  <TextField layoutX="25.0" layoutY="6.0" prefHeight="28.0" prefWidth="222.0" />
+                  <TextField fx:id="searchField" layoutX="25.0" layoutY="6.0" prefHeight="28.0" prefWidth="222.0" />
                   <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="3.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/search.png" />
