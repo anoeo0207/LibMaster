@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox   fx:controller="com.example.libmaster.Controllers.BooksOnLoanController"
+        fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
         <fx:include source="navigation.fxml" />
@@ -50,7 +51,8 @@
                 </Pane>
 
                 <!-- Add new loan -->
-                <Button fx:id="btn_addLoan" layoutX="33.0" layoutY="172.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: #4CAF50;" text="Add New Loan" textFill="WHITE">
+                <Button onAction="#handleAddNewLoanBtn"
+                        fx:id="btn_addLoan" layoutX="33.0" layoutY="172.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: #4CAF50;" text="Add New Loan" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                             <image>
@@ -66,18 +68,18 @@
                 <!-- Table: Books on loan -->
                 <TableView fx:id="loanTableView" layoutX="33.0" layoutY="227.0" prefHeight="443.0" prefWidth="905.0">
                     <columns>
-                        <TableColumn fx:id="bookTitleColumn" prefWidth="200.0" text="Book Title" />
+                        <TableColumn fx:id="isbnColumn" prefWidth="200.0" text="Book Title" />
                         <TableColumn fx:id="borrowerColumn" prefWidth="200.0" text="Borrower" />
                         <TableColumn fx:id="loanDateColumn" prefWidth="150.0" text="Loan Date" />
-                        <TableColumn fx:id="dueDateColumn" prefWidth="150.0" text="Due Date" />
-                        <TableColumn fx:id="statusColumn" prefWidth="150.0" text="Status" />
+                        <TableColumn fx:id="returnDateColumn" prefWidth="150.0" text="Due Date" />
+                        <TableColumn fx:id="commentColumn" prefWidth="150.0" text="Status" />
                     </columns>
                 </TableView>
             <Button fx:id="btn_addLoan1" layoutX="271.0" layoutY="172.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: Red;" text="Remove Loan" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../target/classes/image/minus%2022.05.58.png" />
+<!--                        <Image url="@../../../../../../target/classes/image/minus%2022.05.58.png" />-->
                      </image>
                   </ImageView>
                </graphic>
