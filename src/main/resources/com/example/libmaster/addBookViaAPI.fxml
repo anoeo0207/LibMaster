@@ -9,26 +9,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.TextArea?>
-<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.LibraryController">
-
+<HBox
+        fx:id="root"
+        maxHeight="-Infinity" maxWidth="-Infinity"
+        minHeight="-Infinity" minWidth="-Infinity"
+        prefHeight="800.0" prefWidth="1200.0"
+        styleClass="root" xmlns="http://javafx.com/javafx/23.0.1"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.example.libmaster.Controllers.AddBookViaAPIController">
     <children>
-        <!-- Navigation -->
+
+        <!-- Include navigation bar from another FXML file -->
         <fx:include source="navigation.fxml" />
 
-        <!-- Main Content -->
-        <Pane prefHeight="800.0" prefWidth="1002.0" styleClass="btn_addBook" stylesheets="@style.css">
-            <!-- User avatar -->
+        <!-- Main Pane for adding and displaying books -->
+        <Pane
+                prefHeight="800.0" prefWidth="1002.0" styleClass="btn_addBook">
+
+            <!-- User Avatar -->
             <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../../image/profile.png" />
                 </image>
             </ImageView>
 
-            <!-- Title -->
+            <!-- Title Section -->
             <Label layoutX="33.0" layoutY="98.0" text="Library">
                 <font>
                     <Font name="Futura Bold" size="21.0" />
@@ -40,15 +48,16 @@
                 </font>
             </Label>
 
-            <!-- Search + Add -->
-            <TextField fx:id="searchField" layoutX="100.0" layoutY="172.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search..." />
-            <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="76.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <!-- Search Field + Search Icon -->
+            <TextField fx:id="searchField" layoutX="60.0" layoutY="185.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search for a book..." />
+            <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="40.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../../image/search.png" />
                 </image>
             </ImageView>
-            <Button onAction="#handleAddNewBookBtn"
-                    fx:id="btn_addBook" layoutX="415.0" layoutY="172.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #C0C0C0;" styleClass="btn_addBook" stylesheets="@style.css" text="Add new book" textFill="WHITE">
+
+            <!-- Add New Book Button -->
+            <Button fx:id="btn_addBook" layoutX="415.0" layoutY="172.0" onAction="#handleAddNewBookBtn" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #C0C0C0;" styleClass="btn_addBook" text="Add new book" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="31.0" fitWidth="40.0" preserveRatio="true">
                         <image>
@@ -61,37 +70,56 @@
                 </font>
             </Button>
 
-            <!-- TableView -->
+            <!-- TableView for displaying books -->
             <TableView fx:id="bookTable" layoutX="33.0" layoutY="227.0" prefHeight="391.0" prefWidth="600.0">
                 <columns>
-                    <TableColumn fx:id="isbnColumn" prefWidth="150.0" text="ISBN" />
-                    <TableColumn fx:id="titleColumn" prefWidth="150.0" text="Title" />
-                    <TableColumn fx:id="authorColumn" prefWidth="150.0" text="Author" />
-                    <TableColumn fx:id="categoryColumn" prefWidth="150.0" text="Category" />
+                    <TableColumn fx:id="isbnColumn" prefWidth="95.0" text="ISBN" />
+                    <TableColumn fx:id="titleColumn" prefWidth="112.0" text="Title" />
+                    <TableColumn fx:id="authorColumn" prefWidth="131.0" text="Author" />
+                    <TableColumn fx:id="categoryColumn" prefWidth="116.0" text="Category" />
                 </columns>
             </TableView>
 
-            <!-- Book Detail Panel -->
-            <VBox layoutX="660.0" layoutY="227.0" prefWidth="300.0" spacing="10.0">
+            <!-- Book Details Panel -->
+            <VBox layoutX="660.0" layoutY="227.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" spacing="10.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-padding: 15px; -fx-background-color: #F9F9F9; -fx-background-radius: 8px;">
                 <children>
-                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Add / Edit Book" />
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Book Detail" />
 
-                    <ImageView fx:id="bookCoverImage" fitHeight="180.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true">
+                    <!-- Book Cover Image -->
+                    <ImageView fx:id="bookCoverImage" fitHeight="180.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../../../image/picture.png" />
                         </image>
                     </ImageView>
 
-                    <TextField fx:id="titleField" promptText="Title" />
-                    <TextField fx:id="authorField" promptText="Author" />
-                    <TextField fx:id="isbnField" promptText="ISBN" />
-                    <TextField fx:id="categoryField" promptText="Category" />
-                    <TextArea fx:id="descriptionField" promptText="Description" wrapText="true" prefRowCount="3"/>
-
-                    <Button fx:id="saveButton" text="Save Book"  styleClass="btn_addBook" />
+                    <!-- Book Information -->
+                    <Label fx:id="labelTitle" text="Title: No book found">
+                        <font>
+                            <Font name="Arial" size="13.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="labelAuthor" text="Author: No book found">
+                        <font>
+                            <Font name="Arial" size="13.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="labelISBN" text="ISBN: No book found">
+                        <font>
+                            <Font name="Arial" size="13.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="labelCategory" text="Category: No book found">
+                        <font>
+                            <Font name="Arial" size="13.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="labelDescription" text="Description: No book found" wrapText="true">
+                        <font>
+                            <Font name="Arial" size="13.0" />
+                        </font>
+                    </Label>
                 </children>
             </VBox>
-
         </Pane>
     </children>
 </HBox>
