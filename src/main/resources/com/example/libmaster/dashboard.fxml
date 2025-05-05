@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +10,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.DashboardController">
+<HBox
+        fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.DashboardController">
 
    <children>
       <!-- Nhúng navigation.fxml -->
@@ -39,10 +41,83 @@
             </Label>
 
             <!-- Các dashboard cards -->
-            <Pane fx:id="dashboard_card" layoutX="33.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css" />
-            <Pane fx:id="dashboard_card" layoutX="258.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css" />
-            <Pane fx:id="dashboard_card" layoutX="483.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css" />
-            <Pane fx:id="dashboard_card" layoutX="708.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css" />
+            <Pane fx:id="dashboard_card_01" layoutX="33.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="18.0" layoutY="12.0" text="Total Books">
+                     <font>
+                        <Font name="Futura Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutY="39.0" prefWidth="200.0" />
+                  <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="20.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/book.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="totalBooksLabel" layoutX="110.0" layoutY="65.0" text="0">
+                     <font>
+                        <Font name="Futura Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="dashboard_card_02" layoutX="258.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="18.0" layoutY="12.0" text="Total Requests">
+                     <font>
+                        <Font name="Futura Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutY="39.0" prefWidth="200.0" />
+                  <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="20.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/ask-question.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="totalRequestsLabel" layoutX="110.0" layoutY="65.0" text="0">
+                     <font>
+                        <Font name="Futura Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="dashboard_card_03" layoutX="483.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="18.0" layoutY="12.0" text="Total Members">
+                     <font>
+                        <Font name="Futura Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutY="39.0" prefWidth="200.0" />
+                  <ImageView
+                          fitHeight="40.0" fitWidth="46.0" layoutX="20.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/staff.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="totalMembersLabel" layoutX="110.0" layoutY="65.0" text="16">
+                     <font>
+                        <Font name="Futura Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="dashboard_card_04" layoutX="708.0" layoutY="199.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
+               <children>
+                  <Label fx:id="totalLoanLabel"  layoutX="110.0" layoutY="65.0" text="0">
+                     <font>
+                        <Font name="Futura Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="12.0" text="Total Loans">
+                     <font>
+                        <Font name="Futura Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutY="39.0" prefWidth="200.0" />
+                  <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="20.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/signing.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
 
             <Label layoutX="37.0" layoutY="160.0" text="Overview">
                <font>
@@ -57,8 +132,7 @@
                </font>
             </Label>
 
-            <Pane   onMouseClicked="#handleAddBookChoiceBtn"
-                    fx:id="dashboard_card1" layoutX="33.0" layoutY="429.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css">
+            <Pane fx:id="dashboard_card1" layoutX="33.0" layoutY="429.0" onMouseClicked="#handleAddBookChoiceBtn" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="35.0" layoutX="246.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/dots.png" /></image>
@@ -66,13 +140,13 @@
                   <ImageView fitHeight="72.0" fitWidth="35.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/add-book.png" /></image>
                   </ImageView>
-                  <Label layoutX="60.0" layoutY="16.0" text="Add new book" textFill="WHITE">
+                  <Label layoutX="60.0" layoutY="16.0" text="Add new book">
                      <font><Font name="Futura Bold" size="16.0" /></font>
                   </Label>
                </children>
             </Pane>
 
-            <Pane fx:id="dashboard_card11" layoutX="33.0" layoutY="497.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css">
+            <Pane fx:id="dashboard_card11" layoutX="33.0" layoutY="497.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="35.0" layoutX="246.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/dots.png" /></image>
@@ -80,13 +154,13 @@
                   <ImageView fitHeight="72.0" fitWidth="35.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/add-member.png" /></image>
                   </ImageView>
-                  <Label layoutX="60.0" layoutY="16.0" text="Add new member" textFill="WHITE">
+                  <Label layoutX="60.0" layoutY="16.0" text="Add new member">
                      <font><Font name="Futura Bold" size="16.0" /></font>
                   </Label>
                </children>
             </Pane>
 
-            <Pane fx:id="dashboard_card111" layoutX="33.0" layoutY="565.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css">
+            <Pane fx:id="dashboard_card111" layoutX="33.0" layoutY="565.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="35.0" layoutX="246.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/dots.png" /></image>
@@ -94,13 +168,13 @@
                   <ImageView fitHeight="72.0" fitWidth="35.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/check-book.png" /></image>
                   </ImageView>
-                  <Label layoutX="60.0" layoutY="16.0" text="Check issue book" textFill="WHITE">
+                  <Label layoutX="60.0" layoutY="16.0" text="Check issue book">
                      <font><Font name="Futura Bold" size="16.0" /></font>
                   </Label>
                </children>
             </Pane>
 
-            <Pane fx:id="dashboard_card1111" layoutX="33.0" layoutY="633.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: grey;" styleClass="dashboard-card" stylesheets="@style.css">
+            <Pane fx:id="dashboard_card1111" layoutX="33.0" layoutY="633.0" prefHeight="53.0" prefWidth="280.0" style="-fx-background-color: white;" styleClass="dashboard-card" stylesheets="@style.css">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="35.0" layoutX="246.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/dots.png" /></image>
@@ -108,7 +182,7 @@
                   <ImageView fitHeight="72.0" fitWidth="35.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image><Image url="@../../../image/analytics.png" /></image>
                   </ImageView>
-                  <Label layoutX="60.0" layoutY="16.0" text="Analytics" textFill="WHITE">
+                  <Label layoutX="60.0" layoutY="16.0" text="Analytics">
                      <font><Font name="Futura Bold" size="16.0" /></font>
                   </Label>
                </children>
