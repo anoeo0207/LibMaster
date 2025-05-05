@@ -1,60 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:controller="com.example.libmaster.Controllers.AddMemberController"
-      fx:id="root"
-      prefHeight="800.0" prefWidth="1200.0"
-      styleClass="root"
-      stylesheets="@style.css"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@addMember.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddMemberController">
 
     <children>
+
         <!-- Navigation Menu -->
-        <fx:include source="navigation.fxml"/>
+        <fx:include source="navigation.fxml" />
 
         <!-- Main Content -->
         <Pane prefHeight="800.0" prefWidth="1002.0">
             <children>
 
-                <!-- User avatar -->
+                <!-- Avatar -->
                 <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
                     <children>
-                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0"
-                                   pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../image/profile.png"/>
+                                <Image url="@../../../image/profile.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
 
-                <!-- Form Title -->
-                <Label layoutX="33.0" layoutY="98.0" text="Add New Member">
+                <!-- Title -->
+                <Label layoutX="70.0" layoutY="90.0" text="Add New Member">
                     <font>
-                        <Font name="Futura Bold" size="21.0"/>
+                        <Font name="Futura Bold" size="24.0" />
                     </font>
                 </Label>
 
-                <!-- Add Member Form -->
-                <VBox layoutX="33.0" layoutY="140.0" spacing="12.0" prefWidth="400.0">
-                    <children>
-                        <TextField fx:id="nameField" promptText="Full Name" prefHeight="35.0"/>
-                        <TextField fx:id="phoneField" promptText="Phone Number" prefHeight="35.0"/>
-                        <DatePicker fx:id="dobPicker" promptText="Date of Birth" prefHeight="35.0"/>
-                        <ComboBox fx:id="genderBox" promptText="Gender" prefHeight="35.0"/>
+                <!-- Member Form Card -->
+                <VBox layoutX="70.0" layoutY="140.0" prefHeight="330.0" prefWidth="860.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
+                    <padding>
+                        <Insets bottom="24" left="24" right="24" top="24" />
+                    </padding>
 
-                        <HBox spacing="10.0">
+                    <children>
+
+                        <GridPane hgap="10" vgap="14">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="35" />
+                                <ColumnConstraints percentWidth="65" />
+                            </columnConstraints>
+
                             <children>
-                                <Button fx:id="btn_addMember" text="Add Member" prefWidth="150.0"
-                                        styleClass="btn_addBook"/>
-                                <Button fx:id="btn_clearForm" text="Clear" prefWidth="80.0"/>
+
+                                <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <font>
+                              <Font name="Futura Bold" size="13.0" />
+                           </font></Label>
+                                <TextField fx:id="nameField" prefHeight="35.0" promptText="Enter full name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Futura Bold" size="13.0" />
+                           </font></Label>
+                                <TextField fx:id="emailField" prefHeight="35.0" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Futura Bold" size="13.0" />
+                           </font></Label>
+                                <TextField fx:id="phoneField" prefHeight="35.0" promptText="Enter phone number" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Futura Bold" size="13.0" />
+                           </font></Label>
+                                <DatePicker fx:id="dobPicker" prefHeight="35.0" prefWidth="531.0" promptText="Select date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                <Label text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Futura Bold" size="13.0" />
+                           </font></Label>
+                                <ComboBox
+                                        fx:id="genderBox" prefHeight="35.0" prefWidth="543.0" promptText="Select gender" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                            </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                            <children>
+                                <Button fx:id="btn_clearForm" prefWidth="100" styleClass="btn-secondary" text="Return" />
+                                <Button fx:id="btn_addMember" prefWidth="140" styleClass="btn-primary" text="Add Member" />
                             </children>
                         </HBox>
+
                     </children>
                 </VBox>
 
