@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox fx:controller="com.example.libmaster.Controllers.AddBookController"
-      fx:id="root"
-      prefHeight="800.0" prefWidth="1200.0"
-      styleClass="root"
-      stylesheets="@style.css"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1">
-
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddBookController">
     <children>
         <!-- Navigation Menu -->
-        <fx:include source="navigation.fxml"/>
+        <fx:include source="navigation.fxml" />
 
         <!-- Main Content -->
         <Pane prefHeight="800.0" prefWidth="1002.0">
@@ -25,81 +29,122 @@
                 <!-- Avatar -->
                 <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
                     <children>
-                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0"
-                                   pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../image/profile.png"/>
+                                <Image url="@../../../image/profile.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
 
-                <!-- Title -->
-                <Label layoutX="70.0" layoutY="90.0" text="Add New Book">
-                    <font>
-                        <Font name="Futura" size="24.0"/>
-                    </font>
-                </Label>
-
                 <!-- Book Form Card -->
-                <VBox layoutX="70.0" layoutY="140.0" spacing="18.0" prefWidth="600.0"
-                      style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
+                <VBox layoutX="70.0" layoutY="106.0" prefHeight="567.0" prefWidth="866.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);" stylesheets="@addBook.css">
                     <padding>
-                        <Insets top="24" right="24" bottom="24" left="24"/>
+                        <Insets bottom="24" left="24" right="24" top="24" />
                     </padding>
 
                     <children>
+                  <Pane prefHeight="71.0" prefWidth="818.0">
+                     <children>
+      
+                              <!-- Label -->
+                              <Label layoutX="3.0" layoutY="6.0" text="ADD NEW BOOK">
+                                  <font>
+                                      <Font name="Futura Bold" size="35.0" />
+                                  </font>
+                              </Label>
+                              <!-- Add New Book Label Inside the Form -->
+                              <ImageView fitHeight="51.0" fitWidth="61.0" layoutX="261.0" layoutY="-1.0" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../../../image/book(addBook).png" />
+                                  </image>
+                              </ImageView>
+                     </children>
+                  </Pane>
+
+                        <!-- Separator -->
+                        <Separator prefWidth="866.0" />
 
                         <GridPane hgap="10" vgap="14">
                             <columnConstraints>
-                                <ColumnConstraints percentWidth="35"/>
-                                <ColumnConstraints percentWidth="65"/>
+                                <ColumnConstraints percentWidth="35" />
+                                <ColumnConstraints percentWidth="65" />
                             </columnConstraints>
 
                             <children>
-                                <Label text="ISBN:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="isbnField" promptText="Enter ISBN"
-                                           prefHeight="35.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                <Label text="ISBN:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                <Label text="Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="titleField" promptText="Enter book title"
-                                           prefHeight="35.0" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="titleField" prefHeight="35.0" promptText="Enter book title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label text="Author:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <TextField fx:id="authorField" promptText="Enter author name"
-                                           prefHeight="35.0" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                <Label text="Author:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="authorField" prefHeight="35.0" promptText="Enter author name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                <Label text="Category:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <ComboBox fx:id="categoryBox" promptText="Select category"
-                                          prefHeight="35.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="categoryBox" prefHeight="35.0" prefWidth="538.0" promptText="Select category" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                                <Label text="Quantity:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                                <TextField fx:id="quantityField" promptText="Enter quantity"
-                                           prefHeight="35.0" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                                <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="quantityField" prefHeight="35.0" promptText="Enter quantity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                                <Label text="Description:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                                <TextArea fx:id="descriptionArea" promptText="Enter book description"
-                                          prefHeight="80.0" wrapText="true"
-                                          GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                                <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextArea fx:id="descriptionArea" prefHeight="80.0" promptText="Enter book description" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                                <Label text="Cover Image:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-                                <HBox spacing="10" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                                <Label text="Cover Image:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                     <children>
-                                        <Button fx:id="btn_selectImage" text="Choose Image"/>
-                                        <ImageView fx:id="coverPreview" fitHeight="50.0" fitWidth="40.0"
-                                                   preserveRatio="true"/>
+                                        <Button fx:id="btn_selectImage" text="Choose Image" />
+                                        <ImageView fx:id="coverPreview" fitHeight="50.0" fitWidth="40.0" preserveRatio="true" />
                                     </children>
                                 </HBox>
                             </children>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
                         </GridPane>
 
-                        <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                        <HBox alignment="CENTER_RIGHT" spacing="12.0">
                             <children>
-                                <Button onAction="#handleReturnBtn"
-                                        fx:id="btn_clearForm" text="Return"
-                                        styleClass="btn-secondary" prefWidth="100"/>
-                                <Button fx:id="btn_addBook" text="Add Book"
-                                        styleClass="btn-primary" prefWidth="140"/>
+                                <Button fx:id="btn_clearForm" onAction="#handleReturnBtn" prefHeight="41.0" prefWidth="100" styleClass="btn-secondary" text="Return">
+                                    <font>
+                                        <Font size="19.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btn_addBook" prefHeight="41.0" prefWidth="140" styleClass="btn-primary" text="Add Book" />
                             </children>
                         </HBox>
 
