@@ -1,0 +1,59 @@
+/* style.css */
+
+/* Root background */
+.root {
+    -fx-background-color: #f4f6f9;
+}
+
+/* Label styling */
+.label {
+    -fx-font-family: "Futura";
+    -fx-text-fill: #333333;
+}
+
+/* Text fields and text areas */
+.text-field,
+.text-area,
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+
+/* Button base */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* Primary button */
+.btn-primary {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Secondary button */
+.btn-secondary {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #5a6268;
+}
+
+/* Image preview styling (optional border/shadow) */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.2, 0, 2);
+}
