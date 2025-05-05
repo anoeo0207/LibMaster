@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.ChooseItemViewController">
+
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml" />
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+                <VBox alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="800.0" prefWidth="1002.0" spacing="20.0">
+                    <Label text="Choose an item to view">
+                        <font>
+                            <Font name="Futura Bold" size="24.0" />
+                        </font>
+                    </Label>
+
+                    <HBox alignment="CENTER" spacing="20.0">
+                        <children>
+                            <Button fx:id="btn_addApi" onAction="#handleViewDVD" prefHeight="53.0" prefWidth="150.0" styleClass="btn-secondary" text="DVD">
+                        <font>
+                           <Font name="Futura Medium" size="17.0" />
+                        </font></Button>
+
+                            <Button fx:id="btn_customAdd" onAction="#handleViewThesis" prefHeight="53.0" prefWidth="150.0" styleClass="btn-primary" text="Thesis">
+                        <font>
+                           <Font name="Futura Medium" size="17.0" />
+                        </font></Button>
+                     <Button fx:id="btn_customAdd1" onAction="#handleViewMagazine" prefHeight="53.0" prefWidth="150.0" styleClass="btn-primary" text="Magazine">
+                        <font>
+                           <Font name="Futura Medium" size="17.0" />
+                        </font>
+                     </Button>
+                        </children>
+                    </HBox>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
+</HBox>
