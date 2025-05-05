@@ -1,0 +1,58 @@
+/* General form styling */
+.root {
+    -fx-background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Avatar pane styling */
+.avatar-pane {
+    -fx-background-color: #e6e6e6;
+    border-radius: 8px;
+    padding: 10px;
+    -fx-alignment: center-left;
+}
+
+.avatar-pane Label {
+    margin-left: 10px;
+}
+
+/* GridPane styling */
+.grid-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-padding: 20px;
+}
+
+/* TextFields */
+.TextField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 16px;
+    -fx-pref-width: 400px;
+}
+
+/* Label styling */
+.Label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+}
+
+/* Button styling (if added) */
+.Button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+.Button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Add some spacing */
+.VBox {
+    spacing: 20px;
+}
