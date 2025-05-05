@@ -40,14 +40,14 @@
          </Label>
 
          <!-- Search + Add -->
-         <TextField fx:id="searchField" layoutX="100.0" layoutY="172.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search..." />
-         <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="76.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <TextField
+                 fx:id="searchField" layoutX="60.0" layoutY="185.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search..." />
+         <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="40.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../image/search.png" />
             </image>
          </ImageView>
-         <Button onAction="#handleAddNewBookBtn"
-                 fx:id="btn_addBook" layoutX="415.0" layoutY="172.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #C0C0C0;" styleClass="btn_addBook" stylesheets="@style.css" text="Add new book" textFill="WHITE">
+         <Button fx:id="btn_addBook" layoutX="415.0" layoutY="172.0" onAction="#handleAddNewBookBtn" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #C0C0C0;" styleClass="btn_addBook" stylesheets="@style.css" text="Add new book" textFill="WHITE">
             <graphic>
                <ImageView fitHeight="31.0" fitWidth="40.0" preserveRatio="true">
                   <image>
@@ -63,46 +63,50 @@
          <!-- TableView -->
          <TableView fx:id="bookTable" layoutX="33.0" layoutY="227.0" prefHeight="391.0" prefWidth="600.0">
             <columns>
-               <TableColumn fx:id="isbnColumn" prefWidth="150.0" text="ISBN" />
-               <TableColumn fx:id="titleColumn" prefWidth="150.0" text="Title" />
-               <TableColumn fx:id="authorColumn" prefWidth="150.0" text="Author" />
-               <TableColumn fx:id="categoryColumn" prefWidth="150.0" text="Category" />
+               <TableColumn fx:id="isbnColumn" prefWidth="95.12310791015625" text="ISBN" />
+               <TableColumn fx:id="titleColumn" prefWidth="112.06390380859375" text="Title" />
+               <TableColumn fx:id="authorColumn" prefWidth="131.50631713867188" text="Author" />
+               <TableColumn fx:id="categoryColumn" prefWidth="116.479736328125" text="Category" />
+               <TableColumn fx:id="quantityColumn" prefWidth="142.5" text="Quantity" />
             </columns>
          </TableView>
 
-         <!-- Book Detail Panel -->
-         <VBox layoutX="660.0" layoutY="227.0" prefWidth="300.0" spacing="10.0">
+         <VBox layoutX="660.0" layoutY="227.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" spacing="10.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-padding: 15px; -fx-background-color: #F9F9F9; -fx-background-radius: 8px;">
             <children>
                <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Book Detail" />
-
-               <ImageView fx:id="bookCoverImage" fitHeight="180.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="bookCoverImage" fitHeight="180.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../../image/picture.png" />
-                  </image></ImageView>
+                  </image>
+               </ImageView>
 
                <Label fx:id="labelTitle" text="Title:  No book found">
                   <font>
                      <Font name="Arial Bold" size="13.0" />
-                  </font></Label>
+                  </font>
+               </Label>
                <Label fx:id="labelAuthor" text="Author: No book found ">
                   <font>
                      <Font name="Arial Hebrew Bold" size="13.0" />
-                  </font></Label>
+                  </font>
+               </Label>
                <Label fx:id="labelISBN" text="ISBN: No book found">
                   <font>
                      <Font name="Arial Hebrew Scholar Bold" size="13.0" />
-                  </font></Label>
+                  </font>
+               </Label>
                <Label fx:id="labelCategory" text="Category:  No book found">
                   <font>
                      <Font name="Arial Hebrew Bold" size="13.0" />
-                  </font></Label>
+                  </font>
+               </Label>
                <Label fx:id="labelDescription" text="Description: No book found" wrapText="true">
                   <font>
                      <Font name="Arial Hebrew Scholar Bold" size="13.0" />
-                  </font></Label>
+                  </font>
+               </Label>
             </children>
          </VBox>
-
       </Pane>
    </children>
 </HBox>
