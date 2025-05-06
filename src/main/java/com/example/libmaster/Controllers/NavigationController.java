@@ -36,4 +36,19 @@ public class NavigationController {
     private void handleBooksOnLoanButton(ActionEvent event) throws IOException {
         Main.changeScene("booksOnLoan.fxml");
     }
+
+    @FXML
+    private void handleItemsOnLoanButton (ActionEvent event) throws IOException {
+        Main.changeScene("itemLoan.fxml");
+    }
+
+    @FXML
+    private void handleLibroBotButton(ActionEvent event) throws IOException {
+        Main.changeScene("libroBot.fxml");
+    }
+
+    @FXML
+    private void handleMoreAppsButton(ActionEvent event) throws IOException {
+        Main.changeScene("moreApps.fxml");
+    }
 }

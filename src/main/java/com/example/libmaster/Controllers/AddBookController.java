@@ -48,7 +48,7 @@ public class AddBookController {
 
         File selectedFile = fileChooser.showOpenDialog(btn_selectImage.getScene().getWindow());
         if (selectedFile != null) {
-            selectedImagePath = selectedFile.toURI().toString(); // Save the URL path
+            selectedImagePath = selectedFile.toURI().toString();
             coverPreview.setImage(new javafx.scene.image.Image(selectedImagePath));
         }
     }

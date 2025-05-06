@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.sql.*;
 
 public class AddItemLoanController extends Form {
-    @FXML private TextField borrowerNameField;
+    @FXML private ComboBox<String> borrowerNameComboBox;
     @FXML private ComboBox<String> categoryComboBox;
     @FXML private ComboBox<Pair<Integer, String>> itemNameComboBox;
     @FXML private DatePicker loanDatePicker;
@@ -55,7 +55,27 @@ public class AddItemLoanController extends Form {
                 }
             }
         });
+
+        loadBorrowerNames();
     }
+
+    private void loadBorrowerNames() {
+        ObservableList<String> names = FXCollections.observableArrayList();
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
+            String query = "SELECT name FROM members";
+            try (PreparedStatement stmt = conn.prepareStatement(query);
+                 ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    names.add(rs.getString("name"));
+                }
+            }
+            borrowerNameComboBox.setItems(names);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Failed to load borrower names: " + e.getMessage());
+        }
+    }
+
 
     private void updateItemNamesFromDatabase(String category) {
         itemNameComboBox.getItems().clear();
@@ -93,22 +113,24 @@ public class AddItemLoanController extends Form {
 
     @FXML
     private void handleAddLoan() {
-        String borrowerName = borrowerNameField.getText();
+        String borrowerName = borrowerNameComboBox.getValue();
         String category = categoryComboBox.getValue();
         Pair<Integer, String> selectedItem = itemNameComboBox.getValue();
-        LocalDate loanDate = loanDatePicker.getValue();
-        LocalDate returnDate = returnDatePicker.getValue();
+        Date loanDate = Date.valueOf(loanDatePicker.getValue());
+        Date returnDate = Date.valueOf(returnDatePicker.getValue());
+        String status = LocalDate.now().isAfter(returnDate.toLocalDate()) ? "Overdue" : "Valid";
 
         if (validateInput(borrowerName, selectedItem)) {
             try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
-                String insertQuery = "INSERT INTO item_loans (item_id, member_name, category, loan_date, due_date) " + "VALUES (?, ?, ?, ?, ?)";
+                String insertQuery = "INSERT INTO item_loans (item_id, member_name, category, loan_date, due_date, status) " + "VALUES (?, ?, ?, ?, ?, ?)";
 
                 try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
                     stmt.setInt(1, selectedItem.getKey());
                     stmt.setString(2, borrowerName);
                     stmt.setString(3, category);
-                    stmt.setDate(4, Date.valueOf(loanDate));
-                    stmt.setDate(5, Date.valueOf(returnDate));
+                    stmt.setDate(4, loanDate);
+                    stmt.setDate(5, returnDate);
+                    stmt.setString(6, status);
 
                     int rowsAffected = stmt.executeUpdate();
 
@@ -125,15 +147,38 @@ public class AddItemLoanController extends Form {
         }
     }
 
-    private void updateItemQuantity(int itemId) throws SQLException {
+    private boolean updateItemQuantity(int itemId) throws SQLException {
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
-            String updateQuery = "UPDATE items SET quantity = quantity - 1 WHERE item_id = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
+            String selectQuery = "SELECT quantity FROM items WHERE item_id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
                 stmt.setInt(1, itemId);
-                stmt.executeUpdate();
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    int currentQuantity = rs.getInt("quantity");
+
+                    if (currentQuantity <= 0) {
+                        showAlert("Item quantity is already 0 or less. Cannot update.");
+                        return false;
+                    }
+                    String updateQuery = "UPDATE items SET quantity = quantity - 1 WHERE item_id = ?";
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
+                        updateStmt.setInt(1, itemId);
+                        updateStmt.executeUpdate();
+                    }
+
+                    showAlert("Item quantity updated successfully.");
+                } else {
+                    showAlert("Item not found.");
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database error: " + e.getMessage());
         }
+        return true;
     }
+
 
     private boolean validateInput(String borrowerName, Pair<Integer, String> selectedItem) {
         if (borrowerName == null || borrowerName.trim().isEmpty()) {
@@ -149,7 +194,7 @@ public class AddItemLoanController extends Form {
 
     @Override
     public void clearForm() {
-        borrowerNameField.clear();
+        borrowerNameComboBox.getSelectionModel().clearSelection();
         categoryComboBox.getSelectionModel().selectFirst();
         loanDatePicker.setValue(LocalDate.now());
         returnDatePicker.setValue(LocalDate.now().plusWeeks(2));

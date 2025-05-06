@@ -1,7 +1,8 @@
 package com.example.libmaster.Controllers;
 
+import com.example.libmaster.Config.DatabaseConfig;
 import com.example.libmaster.Main;
-import com.example.libmaster.Models.Book;
+import com.example.libmaster.Models.Documents.Book;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,10 +18,6 @@ import java.sql.*;
 
 
 public class LibraryController {
-
-    private static final String URL = "jdbc:mysql://localhost:3306/LibMasterServer";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
 
     @FXML
     private TableView<Book> bookTable;
@@ -61,7 +58,9 @@ public class LibraryController {
         searchField.setOnAction(event -> {
             String keyword = searchField.getText().trim();
             if (!keyword.isEmpty()) {
-                fetchBooks(keyword); // Fetch books based on search
+                fetchBooks(keyword);
+            } else if (keyword.equals("")) {
+                fetchBooks("");
             }
         });
 
@@ -71,29 +70,78 @@ public class LibraryController {
             }
         });
 
+        addContextMenuToTable();
         fetchBooks("");
     }
 
+    private void addContextMenuToTable() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem editItem = new MenuItem("Edit");
+        editItem.setOnAction(event -> {
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            if (selectedBook != null) {
+                System.out.println("Edit " + selectedBook.getTitle());
+            }
+        });
 
-    private void loadBooks() {
-        ObservableList<Book> books = FXCollections.observableArrayList();
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String sql = "SELECT isbn, title, author, category, quantity FROM books";
-            try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-                while (rs.next()) {
-                    String isbn = rs.getString("isbn");
-                    String title = rs.getString("title");
-                    String author = rs.getString("author");
-                    String category = rs.getString("category");
-                    int quantity = rs.getInt("quantity");
-                    books.add(new Book(isbn, title, author, category, quantity));
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction(event -> {
+            Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+            if (selectedBook != null) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Delete Confirmation");
+                alert.setHeaderText("Are you sure you want to delete this book?");
+                alert.setContentText("This action may delete all the requests and loan records associated with this book.");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        deleteBookFromDatabase(selectedBook.getIsbn());
+                    }
+                });
+            }
+        });
+
+        contextMenu.getItems().addAll(editItem, deleteItem);
+
+        bookTable.setRowFactory(tv -> {
+            TableRow<Book> row = new TableRow<>();
+            row.setContextMenu(contextMenu);
+            return row;
+        });
+    }
+
+    private void deleteBookFromDatabase(String isbn) {
+        String deleteLoansSql = "DELETE FROM book_loans WHERE isbn = ?";
+        String deleteBookSql = "DELETE FROM books WHERE isbn = ?";
+
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement deleteLoansStmt = conn.prepareStatement(deleteLoansSql);
+                 PreparedStatement deleteBookStmt = conn.prepareStatement(deleteBookSql)) {
+                deleteLoansStmt.setString(1, isbn);
+                int loansAffected = deleteLoansStmt.executeUpdate();
+                if (loansAffected > 0 || loansAffected == 0) {
+                    deleteBookStmt.setString(1, isbn);
+                    int bookRowsAffected = deleteBookStmt.executeUpdate();
+
+                    if (bookRowsAffected > 0) {
+                        conn.commit();
+                        System.out.println("Book with ISBN " + isbn + " and related loans deleted successfully.");
+                        fetchBooks("");
+                    } else {
+                        System.out.println("Failed to delete the book.");
+                    }
+                } else {
+                    System.out.println("Failed to delete related book loans.");
                 }
+
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        bookTable.setItems(books);
     }
 
     @FXML
@@ -107,7 +155,7 @@ public class LibraryController {
         String sql = "SELECT isbn, title, author, category, quantity, image, description FROM books WHERE " +
                 "isbn LIKE ? OR title LIKE ? OR author LIKE ? OR category LIKE ?";
 
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 String searchQuery = "%" + keyword + "%";
                 stmt.setString(1, searchQuery);
