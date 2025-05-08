@@ -9,8 +9,19 @@ public class Person {
     private String gender;
     private String phone;
     private String email;
+    private String identification;
 
     public Person(int id, String name, String dateOfBirth, String gender, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public Person(String identification, int id, String name, String dateOfBirth, String gender, String phone, String email) {
+        this.identification = identification;
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -69,5 +80,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getIdentification() {
+        return this.identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 }

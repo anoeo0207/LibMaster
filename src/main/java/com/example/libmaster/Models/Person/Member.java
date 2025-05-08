@@ -8,6 +8,11 @@ public class Member extends Person {
         this.bookBorrowed = bookBorrowed;
     }
 
+    public Member(String identification,int id, String name, String dateOfBirth, String gender, String phone, String email, int bookBorrowed) {
+        super(identification, id, name, dateOfBirth, gender, phone, email);
+        this.bookBorrowed = bookBorrowed;
+    }
+
     public int getBookBorrowed() {
         return bookBorrowed;
     }

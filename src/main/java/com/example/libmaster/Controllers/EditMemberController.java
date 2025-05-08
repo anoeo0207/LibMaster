@@ -15,12 +15,12 @@ import java.time.LocalDate;
 
 public class EditMemberController {
 
+    @FXML private TextField identificationField;
     @FXML private TextField nameField;
     @FXML private ComboBox<String> genderComboBox;
     @FXML private DatePicker dateOfBirthPicker;
     @FXML private TextField emailField;
     @FXML private TextField phoneField;
-    @FXML private TextArea booksBorrowedArea;
     @FXML private Button saveButton;
     @FXML private Button returnButton;
 
@@ -32,6 +32,7 @@ public class EditMemberController {
 
     public void setMember(Member member) {
         this.member = member;
+        identificationField.setText(member.getIdentification());
         nameField.setText(member.getName());
         genderComboBox.setValue(member.getGender());
         dateOfBirthPicker.setValue(LocalDate.parse(member.getDateOfBirth()));
@@ -42,13 +43,14 @@ public class EditMemberController {
 
     @FXML
     private void handleSaveBtn() {
+        member.setIdentification(identificationField.getText());
         member.setName(nameField.getText());
         member.setGender(genderComboBox.getValue());
         member.setDateOfBirth(String.valueOf(dateOfBirthPicker.getValue()));
         member.setEmail(emailField.getText());
         member.setPhone(phoneField.getText());
 
-        String sql = "UPDATE members SET name = ?, gender = ?, date_of_birth = ?, email = ?, phone = ? WHERE id = ?";
+        String sql = "UPDATE members SET name = ?, gender = ?, date_of_birth = ?, email = ?, phone = ?, identification_num = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -57,7 +59,8 @@ public class EditMemberController {
             stmt.setDate(3, java.sql.Date.valueOf(member.getDateOfBirth()));
             stmt.setString(4, member.getEmail());
             stmt.setString(5, member.getPhone());
-            stmt.setInt(6, member.getId());
+            stmt.setString(6, member.getIdentification());
+            stmt.setInt(7, member.getId());
 
             stmt.executeUpdate();
         } catch (SQLException e) {

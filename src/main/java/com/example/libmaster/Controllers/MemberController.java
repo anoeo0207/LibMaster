@@ -1,7 +1,6 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Main;
-import com.example.libmaster.Models.Documents.Book;
 import com.example.libmaster.Models.Person.Member;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -93,7 +92,6 @@ public class MemberController {
                 }
             });
 
-            // Remove the duplicate "Edit" item and only keep one
             MenuItem editItem = new MenuItem("Edit");
             editItem.setOnAction(event -> {
                 Member selectedMember = row.getItem();
@@ -147,7 +145,7 @@ public class MemberController {
         ObservableList<Member> members = FXCollections.observableArrayList();
 
         String sql = """
-            SELECT m.id, m.name, m.gender, m.date_of_birth, m.phone, m.email,
+            SELECT m.id, m.name, m.gender, m.date_of_birth, m.phone, m.email, m.identification_num,
                    COUNT(bl.member_id) AS total_books
             FROM members m
             LEFT JOIN book_loans bl ON m.id = bl.member_id
@@ -171,9 +169,12 @@ public class MemberController {
                 String dob = rs.getString("date_of_birth");
                 String phone = rs.getString("phone");
                 String email = rs.getString("email");
+                String identification = rs.getString("identification_num");
                 int totalBooks = rs.getInt("total_books");
 
-                members.add(new Member(id, name, dob, gender, phone, email, totalBooks));
+                Member m = new Member(id, name, dob, gender, phone, email, totalBooks);
+                m.setIdentification(identification);
+                members.add(m);
             }
         } catch (SQLException e) {
             e.printStackTrace();

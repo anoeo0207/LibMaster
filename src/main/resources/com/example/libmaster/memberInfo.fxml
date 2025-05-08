@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -11,11 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
 
-<HBox
-        fx:id="root"
-        prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@memberInfo.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.MemberInfoController">
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@memberInfo.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.MemberInfoController">
     <children>
         <!-- Navigation Menu -->
         <fx:include source="navigation.fxml" />
@@ -32,30 +30,27 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <!-- Title -->
                 <Label layoutX="70.0" layoutY="90.0" text="View Member Info">
                     <font>
                         <Font name="Futura Bold" size="24.0" />
                     </font>
                 </Label>
 
-                <!-- Member Info Form -->
-                <VBox layoutX="45.0" layoutY="150.0" prefHeight="598.0" prefWidth="880.0" spacing="20.0">
+                <VBox layoutX="45.0" layoutY="138.0" prefHeight="598.0" prefWidth="880.0" spacing="20.0">
                     <children>
-                        <!-- Avatar Image -->
-                        <Pane prefHeight="248.0" prefWidth="880.0" style="-fx-background-radius: 12; -fx-background-color: linear-gradient(to bottom, #f0faff, #cceeff);;" styleClass="avatar-pane">
+                        <Pane prefHeight="146.0" prefWidth="880.0" style="-fx-background-radius: 12; -fx-background-color: linear-gradient(to bottom, #f0faff, #cceeff);;" styleClass="avatar-pane">
                             <children>
-                                <ImageView fitHeight="202.0" fitWidth="232.0" layoutX="11.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="124.0" fitWidth="142.0" layoutX="11.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../image/ava.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="nameLabel" layoutX="222.0" layoutY="37.0" text="Member Name">
+                                <Label fx:id="nameLabel" layoutX="164.0" layoutY="45.0" text="Member Name">
                                     <font>
-                                        <Font name="Arial Bold" size="30.0" />
+                                        <Font name="Arial Bold" size="25.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="genderLabel" layoutX="222.0" layoutY="81.0" prefHeight="25.0" prefWidth="212.0" text="Male ♂">
+                                <Label fx:id="genderLabel" layoutX="164.0" layoutY="78.0" prefHeight="25.0" prefWidth="212.0" text="Male ♂">
                                     <font>
                                         <Font name="Arial" size="18.0" />
                                     </font>
@@ -63,10 +58,9 @@
                             </children>
                         </Pane>
 
-                        <!-- GridPane for Member Info -->
                         <GridPane hgap="20.0" prefHeight="372.0" prefWidth="880.0" vgap="10.0">
                             <padding>
-                                <Insets top="0" right="0" bottom="20" left="0"/>
+                                <Insets bottom="20" left="0" right="0" top="0" />
                             </padding>
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="440.0" />
@@ -80,10 +74,9 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <!-- Identification Code -->
                                 <Pane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <Label layoutX="15.0" layoutY="45.0" text="• Identification Code">
+                                        <Label layoutX="15.0" layoutY="45.0" text="• Identification Number">
                                             <font>
                                                 <Font name="System Bold" size="19.0" />
                                             </font>
@@ -92,11 +85,10 @@
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                     <children>
-                                        <TextField fx:id="idField" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" editable="false"/>
+                                        <TextField fx:id="identificationField" editable="false" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" />
                                     </children>
                                 </Pane>
 
-                                <!-- Email -->
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                     <children>
                                         <Label layoutX="15.0" layoutY="45.0" text="• Email">
@@ -108,11 +100,10 @@
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <TextField layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" editable="false"/>
+                                        <TextField fx:id="emailField" editable="false" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" />
                                     </children>
                                 </Pane>
 
-                                <!-- Phone -->
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                     <children>
                                         <Label layoutX="15.0" layoutY="45.0" text="• Phone">
@@ -124,11 +115,10 @@
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <children>
-                                        <TextField fx:id="phoneField" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" editable="false"/>
+                                        <TextField fx:id="phoneField" editable="false" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" />
                                     </children>
                                 </Pane>
 
-                                <!-- Date of Birth -->
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                     <children>
                                         <Label layoutX="15.0" layoutY="45.0" text="• Date of Birth">
@@ -140,11 +130,10 @@
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <children>
-                                        <TextField fx:id="dobField" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" editable="false"/>
+                                        <TextField fx:id="dobField" editable="false" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" />
                                     </children>
                                 </Pane>
 
-                                <!-- Books Borrowed -->
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                                     <children>
                                         <Label layoutX="15.0" layoutY="45.0" text="• Books Borrowed">
@@ -156,7 +145,7 @@
                                 </Pane>
                                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                     <children>
-                                        <TextField fx:id="quantityField" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" editable="false"/>
+                                        <TextField fx:id="quantityField" editable="false" layoutX="-14.0" layoutY="38.0" prefHeight="38.0" prefWidth="443.0" promptText="01" />
                                     </children>
                                 </Pane>
                             </children>

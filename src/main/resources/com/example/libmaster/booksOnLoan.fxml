@@ -83,7 +83,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                      <image>
-<!--                        <Image url="@../../../../../../target/classes/image/minus%2022.05.58.png" />-->
+                        <Image url="@../../../../../../target/classes/image/minus.png" />
                      </image>
                   </ImageView>
                </graphic>

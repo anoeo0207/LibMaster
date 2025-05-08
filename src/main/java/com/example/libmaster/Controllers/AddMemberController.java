@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import static com.example.libmaster.Config.DatabaseConfig.*;
 
 public class AddMemberController extends Form {
+    @FXML private TextField identificationField;
     @FXML private TextField nameField;
     @FXML private TextField emailField;
     @FXML private TextField phoneField;
@@ -27,6 +28,7 @@ public class AddMemberController extends Form {
     }
 
     private void addMemberToDatabase() {
+        String identification = identificationField.getText();
         String fullName = nameField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneField.getText();
@@ -38,7 +40,7 @@ public class AddMemberController extends Form {
             return;
         }
 
-        String sql = "INSERT INTO members (name, email, phone, date_of_birth, gender) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO members (name, email, phone, date_of_birth, gender, identification_num) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -48,6 +50,7 @@ public class AddMemberController extends Form {
             stmt.setString(3, phoneNumber);
             stmt.setString(4, dateOfBirth);
             stmt.setString(5, gender);
+            stmt.setString(6, identification);
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
@@ -65,6 +68,7 @@ public class AddMemberController extends Form {
 
     @Override
     public void clearForm() {
+        identificationField.clear();
         nameField.clear();
         emailField.clear();
         phoneField.clear();

@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class MemberInfoController {
-    @FXML private TextField idField;
+    public TextField identificationField;
     @FXML private Label nameLabel;
     @FXML private TextField dobField;
     @FXML private Label genderLabel;
@@ -15,7 +15,7 @@ public class MemberInfoController {
     @FXML private TextField quantityField;
 
     public void setMember(Member member) {
-        idField.setText(String.valueOf(member.getId()));
+        identificationField.setText(String.valueOf(member.getIdentification()));
         nameLabel.setText(member.getName());
         dobField.setText(member.getDateOfBirth());
         genderLabel.setText(member.getGender());

@@ -60,14 +60,7 @@ public class LibraryController {
         categoryColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
         quantityColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getQuantity()));
 
-        searchField.setOnAction(event -> {
-            String keyword = searchField.getText().trim();
-            if (!keyword.isEmpty()) {
-                fetchBooks(keyword);
-            } else if (keyword.equals("")) {
-                fetchBooks("");
-            }
-        });
+        searchField.setOnAction(event -> onSearch());
 
         bookTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -88,10 +81,8 @@ public class LibraryController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libmaster/editBookForm.fxml"));
                     Parent root = loader.load();
-
                     EditBookController controller = loader.getController();
                     controller.setBook(selectedBook);
-
                     Stage stage = new Stage();
                     stage.setTitle("Edit Book Form");
                     stage.setScene(new Scene(root));
@@ -126,7 +117,10 @@ public class LibraryController {
 
         bookTable.setRowFactory(tv -> {
             TableRow<Book> row = new TableRow<>();
-            row.setContextMenu(contextMenu);
+            row.contextMenuProperty().bind(
+                    javafx.beans.binding.Bindings.when(row.emptyProperty())
+                            .then((ContextMenu) null)
+                            .otherwise(contextMenu));
             return row;
         });
     }
@@ -141,22 +135,16 @@ public class LibraryController {
             try (PreparedStatement deleteLoansStmt = conn.prepareStatement(deleteLoansSql);
                  PreparedStatement deleteBookStmt = conn.prepareStatement(deleteBookSql)) {
                 deleteLoansStmt.setString(1, isbn);
-                int loansAffected = deleteLoansStmt.executeUpdate();
-                if (loansAffected > 0 || loansAffected == 0) {
-                    deleteBookStmt.setString(1, isbn);
-                    int bookRowsAffected = deleteBookStmt.executeUpdate();
+                deleteLoansStmt.executeUpdate();
+                deleteBookStmt.setString(1, isbn);
+                int bookRowsAffected = deleteBookStmt.executeUpdate();
 
-                    if (bookRowsAffected > 0) {
-                        conn.commit();
-                        System.out.println("Book with ISBN " + isbn + " and related loans deleted successfully.");
-                        fetchBooks("");
-                    } else {
-                        System.out.println("Failed to delete the book.");
-                    }
+                if (bookRowsAffected > 0) {
+                    conn.commit();
+                    fetchBooks(searchField.getText().trim());
                 } else {
-                    System.out.println("Failed to delete related book loans.");
+                    conn.rollback();
                 }
-
             } catch (SQLException e) {
                 conn.rollback();
                 e.printStackTrace();
@@ -173,34 +161,33 @@ public class LibraryController {
 
     public void fetchBooks(String keyword) {
         ObservableList<Book> books = FXCollections.observableArrayList();
-
         String sql = "SELECT isbn, title, author, category, quantity, image, description FROM books WHERE " +
                 "isbn LIKE ? OR title LIKE ? OR author LIKE ? OR category LIKE ?";
 
-        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD)) {
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                String searchQuery = "%" + keyword + "%";
-                stmt.setString(1, searchQuery);
-                stmt.setString(2, searchQuery);
-                stmt.setString(3, searchQuery);
-                stmt.setString(4, searchQuery);
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            String searchQuery = "%" + keyword + "%";
+            stmt.setString(1, searchQuery);
+            stmt.setString(2, searchQuery);
+            stmt.setString(3, searchQuery);
+            stmt.setString(4, searchQuery);
 
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        String isbn = rs.getString("isbn");
-                        String title = rs.getString("title");
-                        String author = rs.getString("author");
-                        String category = rs.getString("category");
-                        int quantity = rs.getInt("quantity");
-                        String image = rs.getString("image");
-                        String description = rs.getString("description");
-                        books.add(new Book(isbn, title, author, category, quantity, description, image));
-                    }
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String isbn = rs.getString("isbn");
+                    String title = rs.getString("title");
+                    String author = rs.getString("author");
+                    String category = rs.getString("category");
+                    int quantity = rs.getInt("quantity");
+                    String image = rs.getString("image");
+                    String description = rs.getString("description");
+                    books.add(new Book(isbn, title, author, category, quantity, description, image));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         bookTable.setItems(books);
     }
 
@@ -214,26 +201,27 @@ public class LibraryController {
         String imageUrl = book.getImage();
 
         if (imageUrl != null && !imageUrl.isEmpty()) {
-            String imagePath = book.getImage();
-
-            if (imagePath.contains("https://") || imagePath.contains("http://")) {
-                Image image = new Image(imagePath);
-                bookCoverImage.setImage(image);
+            Image image;
+            if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+                image = new Image(imageUrl, true);
             } else {
-                Image image = new Image("file:" + imagePath);
-                bookCoverImage.setImage(image);
+                image = new Image("file:" + imageUrl, true);
             }
+            bookCoverImage.setImage(image);
         } else {
-            Image defaultImage = new Image("picture.png");
-            bookCoverImage.setImage(defaultImage);
+            try {
+                Image defaultImage = new Image(getClass().getResource("/com/example/libmaster/picture.png").toExternalForm());
+                bookCoverImage.setImage(defaultImage);
+            } catch (Exception e) {
+                bookCoverImage.setImage(null);
+            }
         }
     }
 
     @FXML
     private void onSearch() {
         String param = searchField.getText();
-        if (!param.isEmpty()) {
-            fetchBooks(param);
-        }
+        fetchBooks(param);
     }
 }
+

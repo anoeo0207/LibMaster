@@ -43,8 +43,7 @@
          </Label>
 
          <!-- Search + Add -->
-         <TextField
-                 fx:id="searchField" layoutX="60.0" layoutY="185.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search..." />
+         <TextField fx:id="searchField" layoutX="60.0" layoutY="185.0" onAction="#onSearch" prefHeight="28.0" prefWidth="222.0" promptText="Search..." />
          <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="40.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../image/search.png" />
@@ -66,7 +65,7 @@
          <!-- TableView -->
          <TableView fx:id="bookTable" layoutX="33.0" layoutY="227.0" prefHeight="391.0" prefWidth="600.0">
             <columns>
-               <TableColumn fx:id="isbnColumn" prefWidth="95.12310791015625" text="ISBN" />
+               <TableColumn fx:id="isbnColumn" prefWidth="95.12310791015625" text="LMCode" />
                <TableColumn fx:id="titleColumn" prefWidth="112.06390380859375" text="Title" />
                <TableColumn fx:id="authorColumn" prefWidth="131.50631713867188" text="Author" />
                <TableColumn fx:id="categoryColumn" prefWidth="116.479736328125" text="Category" />
@@ -83,31 +82,11 @@
                   </image>
                </ImageView>
 
-               <Label fx:id="labelTitle" text="Title:  No book found">
-                  <font>
-                     <Font name="Arial Bold" size="13.0" />
-                  </font>
-               </Label>
-               <Label fx:id="labelAuthor" text="Author: No book found ">
-                  <font>
-                     <Font name="Arial Hebrew Bold" size="13.0" />
-                  </font>
-               </Label>
-               <Label fx:id="labelISBN" text="ISBN: No book found">
-                  <font>
-                     <Font name="Arial Hebrew Scholar Bold" size="13.0" />
-                  </font>
-               </Label>
-               <Label fx:id="labelCategory" text="Category:  No book found">
-                  <font>
-                     <Font name="Arial Hebrew Bold" size="13.0" />
-                  </font>
-               </Label>
-               <Label fx:id="labelDescription" text="Description: No book found" wrapText="true">
-                  <font>
-                     <Font name="Arial Hebrew Scholar Bold" size="13.0" />
-                  </font>
-               </Label>
+               <Label fx:id="labelTitle" text="Title:  No book found" />
+               <Label fx:id="labelAuthor" text="Author: No book found " />
+               <Label fx:id="labelISBN" text="LMCode: No book found" />
+               <Label fx:id="labelCategory" text="Category:  No book found" />
+               <Label fx:id="labelDescription" text="Description: No book found" wrapText="true" />
             </children>
          </VBox>
       </Pane>

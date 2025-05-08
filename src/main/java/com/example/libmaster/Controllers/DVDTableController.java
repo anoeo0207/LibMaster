@@ -133,6 +133,6 @@ public class DVDTableController {
         });
 
         addContextMenuToTable();
-        fetchDVDs(""); // Load all DVDs at start
+        fetchDVDs("");
     }
 }

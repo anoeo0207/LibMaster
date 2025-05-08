@@ -70,12 +70,12 @@
                             </columnConstraints>
 
                             <children>
-                                <Label text="ISBN:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="LMCode:" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <font>
                                         <Font name="Arial Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter LMCode" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                                 <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <font>

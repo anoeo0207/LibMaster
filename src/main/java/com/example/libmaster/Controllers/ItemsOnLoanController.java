@@ -7,7 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -57,6 +62,33 @@ public class ItemsOnLoanController {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         loadItemLoanData();
+
+        itemLoanTableView.setRowFactory(tv -> {
+            TableRow<Loan> row = new TableRow<>();
+
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem deleteItem = new MenuItem("Delete this loan");
+
+            deleteItem.setOnAction(event -> {
+                Loan selectedLoan = row.getItem();
+                if (selectedLoan != null) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                            "Are you sure you want to delete this loan?", ButtonType.YES, ButtonType.NO);
+                    alert.setHeaderText("Confirm Deletion");
+                    alert.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.YES) {
+                            deleteLoanFromDatabase(selectedLoan.getLoanId(), selectedLoan.getItemName());
+                            itemLoanTableView.getItems().remove(selectedLoan);
+                        }
+                    });
+                }
+            });
+
+            contextMenu.getItems().add(deleteItem);
+            row.setContextMenu(contextMenu);
+
+            return row;
+        });
     }
 
     private void loadItemLoanData() {
@@ -86,5 +118,24 @@ public class ItemsOnLoanController {
         }
 
         itemLoanTableView.setItems(loans);
+    }
+
+    private void deleteLoanFromDatabase(int loanId, String itemName) {
+        String sqlDeleteLoan = "DELETE FROM item_loans WHERE loan_id = ?";
+        String sqlUpdateItemQuantity = "UPDATE items SET quantity = quantity + 1 WHERE title = ?";
+
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
+             PreparedStatement stmtDeleteLoan = conn.prepareStatement(sqlDeleteLoan);
+             PreparedStatement stmtUpdateItem = conn.prepareStatement(sqlUpdateItemQuantity)) {
+
+            stmtDeleteLoan.setInt(1, loanId);
+            stmtDeleteLoan.executeUpdate();
+
+            stmtUpdateItem.setString(1, itemName);
+            stmtUpdateItem.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -53,11 +53,11 @@
                     </columnConstraints>
 
                     <!-- Row 0: ISBN -->
-                    <Label text="ISBN *" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="LMCode *" GridPane.columnIndex="0" GridPane.rowIndex="0">
                   <font>
                      <Font name="Futura Bold" size="13.0" />
                   </font></Label>
-                    <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter LMCode" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                     <!-- Row 1: Borrower ComboBox with search -->
                     <Label text="Borrower *" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -90,7 +90,7 @@
                     <!-- Row 5: Buttons -->
                     <HBox alignment="CENTER_RIGHT" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <children>
-                            <Button fx:id="btn_clearForm" prefHeight="31.0" prefWidth="100" styleClass="btn-secondary" text="Return">
+                            <Button onAction="#handleReturnBtn" prefHeight="31.0" prefWidth="100" styleClass="btn-secondary" text="Return">
                         <font>
                            <Font name="System Bold" size="13.0" />
                         </font></Button>

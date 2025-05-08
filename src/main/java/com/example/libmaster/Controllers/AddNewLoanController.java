@@ -1,15 +1,18 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Config.DatabaseConfig;
+import com.example.libmaster.Main;
 import com.example.libmaster.Models.Documents.Book;
 import com.example.libmaster.Models.Form;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.AbstractMap.SimpleEntry; // Thêm import này
@@ -194,5 +197,10 @@ public class AddNewLoanController extends Form {
         loanDatePicker.setValue(null);
         returnDatePicker.setValue(null);
         commentsArea.clear();
+    }
+
+    @FXML
+    private void handleReturnBtn(ActionEvent actionEvent) throws IOException {
+        Main.changeScene("booksOnLoan.fxml");
     }
 }

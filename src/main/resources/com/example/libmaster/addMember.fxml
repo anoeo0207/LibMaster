@@ -37,14 +37,14 @@
                 </Pane>
 
                 <!-- Title -->
-                <Label layoutX="70.0" layoutY="90.0" text="Add New Member">
+                <Label layoutX="70.0" layoutY="109.0" text="Add New Member">
                     <font>
                         <Font name="Futura Bold" size="24.0" />
                     </font>
                 </Label>
 
                 <!-- Member Form Card -->
-                <VBox layoutX="70.0" layoutY="140.0" prefHeight="330.0" prefWidth="860.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
+                <VBox layoutX="70.0" layoutY="159.0" prefHeight="385.0" prefWidth="860.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
                     <padding>
                         <Insets bottom="24" left="24" right="24" top="24" />
                     </padding>
@@ -59,45 +59,59 @@
 
                             <children>
 
-                                <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                           <font>
-                              <Font name="Futura Bold" size="13.0" />
-                           </font></Label>
-                                <TextField fx:id="nameField" prefHeight="35.0" promptText="Enter full name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <!-- New Identification Field -->
+                                <Label text="Identification:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="identificationField" prefHeight="35.0" promptText="Enter identification" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Futura Bold" size="13.0" />
-                           </font></Label>
-                                <TextField fx:id="emailField" prefHeight="35.0" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="nameField" prefHeight="35.0" promptText="Enter full name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Futura Bold" size="13.0" />
-                           </font></Label>
-                                <TextField fx:id="phoneField" prefHeight="35.0" promptText="Enter phone number" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="emailField" prefHeight="35.0" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Futura Bold" size="13.0" />
-                           </font></Label>
-                                <DatePicker fx:id="dobPicker" prefHeight="35.0" prefWidth="531.0" promptText="Select date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="phoneField" prefHeight="35.0" promptText="Enter phone number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                                <Label text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                           <font>
-                              <Font name="Futura Bold" size="13.0" />
-                           </font></Label>
-                                <ComboBox
-                                        fx:id="genderBox" prefHeight="35.0" prefWidth="543.0" promptText="Select gender" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <DatePicker fx:id="dobPicker" prefHeight="35.0" prefWidth="531.0" promptText="Select date" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                <Label text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                    <font>
+                                        <Font name="Futura Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="genderBox" prefHeight="35.0" prefWidth="543.0" promptText="Select gender" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                             </children>
-                     <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                     </rowConstraints>
+
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
                         </GridPane>
 
                         <HBox alignment="CENTER_RIGHT" spacing="12.0">

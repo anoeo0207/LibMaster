@@ -6,11 +6,11 @@
 
 ## 👥 Tác giả
 
-Dự án **LIBMASTER – Library Management System** được phát triển bởi nhóm Cựu chiến binh:
+Dự án **LIBMASTER – Library Management System** được phát triển bởi nhóm Cựu Chiến Binh:
 
 - **Nguyễn Hải An** – 23020581
 - **Nguyễn Xuân Quang** – 20020463
-- **Phạm Thành Luân** – 
+- **Phạm Thành Luân** – 20020542
 
 ## 📊 Dashboard
 - Màn hình chính của ứng dụng cung cấp cái nhìn tổng quan về các thông tin, thống kê của thư viện và bao gồm các phím tắt để thực hiện các thao tác một cách nhanh chóng.
