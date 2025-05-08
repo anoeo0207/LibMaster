@@ -8,6 +8,8 @@
 
 ### 📖 Quản lý Thư viện (Sách)
 - **Thêm sách qua API**: Tìm kiếm và thêm thông tin sách từ Google Books API.
+![Giao diện LIBRO](assets/addBookAPI.png "Giao diện thêm sách qua API")
+
 - **Thêm sách thủ công**: Cho phép thêm sách theo cách nhập tay khi API không cung cấp đúng thông tin.
 - **Chỉnh sửa sách**: Cập nhật thông tin sách hiện có.
 - **Xoá sách**: Xoá sách khỏi hệ thống.
