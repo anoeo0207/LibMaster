@@ -9,40 +9,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox
-        fx:id="root"
-        maxHeight="-Infinity" maxWidth="-Infinity"
-        minHeight="-Infinity" minWidth="-Infinity"
-        prefHeight="800.0" prefWidth="1200.0"
-        styleClass="root" xmlns="http://javafx.com/javafx/23.0.1"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.example.libmaster.Controllers.AddBookViaAPIController">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddBookViaAPIController">
     <children>
 
         <!-- Include navigation bar from another FXML file -->
         <fx:include source="navigation.fxml" />
 
         <!-- Main Pane for adding and displaying books -->
-        <Pane
-                prefHeight="800.0" prefWidth="1002.0" styleClass="btn_addBook">
-
-            <!-- User Avatar -->
-            <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../../image/profile.png" />
-                </image>
-            </ImageView>
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <Pane prefHeight="78.0" prefWidth="965.0">
+                <children>
+                    <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../../image/profile.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </Pane>
 
             <!-- Title Section -->
-            <Label layoutX="33.0" layoutY="98.0" text="Library">
+            <Label layoutX="33.0" layoutY="98.0" text="Add Book Via API">
                 <font>
                     <Font name="Futura Bold" size="21.0" />
                 </font>
             </Label>
-            <Label layoutX="33.0" layoutY="130.0" text="Add, edit, delete, and search books in your library.">
+            <Label layoutX="33.0" layoutY="130.0" text="Search and Add Books Instantly from Online Sources.">
                 <font>
                     <Font name="Arial" size="15.0" />
                 </font>
@@ -73,10 +67,10 @@
             <!-- TableView for displaying books -->
             <TableView fx:id="bookTable" layoutX="33.0" layoutY="227.0" prefHeight="391.0" prefWidth="600.0">
                 <columns>
-                    <TableColumn fx:id="isbnColumn" prefWidth="95.0" text="ISBN" />
-                    <TableColumn fx:id="titleColumn" prefWidth="112.0" text="Title" />
-                    <TableColumn fx:id="authorColumn" prefWidth="131.0" text="Author" />
-                    <TableColumn fx:id="categoryColumn" prefWidth="116.0" text="Category" />
+                    <TableColumn fx:id="idColumn" prefWidth="95.0" text="ID" />
+                    <TableColumn fx:id="titleColumn" prefWidth="177.142822265625" text="Title" />
+                    <TableColumn fx:id="authorColumn" prefWidth="166.357177734375" text="Author" />
+                    <TableColumn fx:id="categoryColumn" prefWidth="161.87158203125" text="Category" />
                 </columns>
             </TableView>
 
@@ -103,7 +97,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Label>
-                    <Label fx:id="labelISBN" text="ISBN: No book found">
+                    <Label fx:id="labelId" text="ID: No book found">
                         <font>
                             <Font name="Arial" size="13.0" />
                         </font>

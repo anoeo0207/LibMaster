@@ -12,6 +12,7 @@ public class MemberInfoController {
     @FXML private Label genderLabel;
     @FXML private TextField phoneField;
     @FXML private TextField emailField;
+    @FXML private TextField quantityField;
 
     public void setMember(Member member) {
         idField.setText(String.valueOf(member.getId()));
@@ -19,6 +20,7 @@ public class MemberInfoController {
         dobField.setText(member.getDateOfBirth());
         genderLabel.setText(member.getGender());
         phoneField.setText(member.getPhone());
-//        emailField.setText(member.getEmail());
+        emailField.setText(member.getEmail());
+        quantityField.setText(String.valueOf(member.getBookBorrowed()));
     }
 }

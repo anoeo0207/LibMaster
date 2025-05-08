@@ -2,18 +2,32 @@ package com.example.libmaster.Models.Documents;
 
 public class DVD extends Document {
     private String director;
-    private int duration;
+    private String duration;
 
-    public DVD(String id, String title, String director, int duration, int quantity) {
-        super(id, title);
+    public DVD(String id, String title, String director, String duration, int quantity) {
+        super(id, title, quantity);
         this.director = director;
         this.duration = duration;
         this.quantity = quantity;
-        this.isAvailable = quantity > 0;
+    }
+
+    public DVD(String id, String title, String director, String duration, int quantity, String description) {
+        super(id, title, quantity, description);
+        this.director = director;
+        this.duration = duration;
+        this.quantity = quantity;
     }
 
     @Override
     public void showInfo() {
         System.out.println("DVD: " + title + " | Director: " + director + " | Duration: " + duration + " minutes");
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getDuration() {
+        return duration;
     }
 }

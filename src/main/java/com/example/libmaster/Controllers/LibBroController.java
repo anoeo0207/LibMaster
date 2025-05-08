@@ -67,7 +67,7 @@ public class LibBroController {
     }
 
     private String chatBotResponse(String promptText) throws IOException {
-        String modelName = "gemma2:2b";
+        String modelName = "gemma3";
 
         URL url = new URL("http://localhost:11434/api/generate");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

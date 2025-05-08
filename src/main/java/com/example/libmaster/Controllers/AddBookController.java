@@ -75,7 +75,7 @@ public class AddBookController {
             return;
         }
 
-        String sql = "INSERT INTO books (isbn, title, author, category, quantity, published_date, image, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO books (isbn, title, author, category, quantity, image, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -85,9 +85,8 @@ public class AddBookController {
             stmt.setString(3, author);
             stmt.setString(4, category);
             stmt.setInt(5, quantity);
-            stmt.setString(6, java.time.LocalDate.now().toString()); // published_date as today
-            stmt.setString(7, imageUrl);
-            stmt.setString(8, description);
+            stmt.setString(6, imageUrl);
+            stmt.setString(7, description);
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {

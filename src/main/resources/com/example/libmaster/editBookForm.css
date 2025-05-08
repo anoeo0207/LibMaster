@@ -1,0 +1,25 @@
+.form-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0.3, 0, 5);
+}
+
+.form-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.primary-button {
+    -fx-background-color: #007ACC;
+    -fx-text-fill: white;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5;
+}
+
+.secondary-button {
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #333333;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5;
+}

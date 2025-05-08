@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addBookViaAPI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
 
         stage.setResizable(false);
@@ -26,6 +26,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     public static void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));

@@ -1,19 +1,31 @@
 package com.example.libmaster.Models.Documents;
 
 public class Magazine extends Document {
-    private String issueNumber;
     private String publisher;
+    private String author;
 
-    public Magazine(String id, String title, String issueNumber, String publisher, int quantity) {
-        super(id, title);
-        this.issueNumber = issueNumber;
+    public Magazine(String id, String title, String publisher, int quantity) {
+        super(id, title, quantity);
         this.publisher = publisher;
         this.quantity = quantity;
-        this.isAvailable = quantity > 0;
+    }
+
+    public Magazine(String id, String title, String author, String publisher, int quantity, String description) {
+        super(id, title, quantity, description);
+        this.author = author;
+        this.publisher = publisher;
     }
 
     @Override
     public void showInfo() {
-        System.out.println("Magazine: " + title + " | Issue: " + issueNumber + " | Publisher: " + publisher);
+        System.out.println("Magazine: " + title + " | Publisher: " + publisher);
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 }

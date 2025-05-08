@@ -1,90 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<HBox
-        fx:id="root"
-        prefHeight="800.0" prefWidth="1200.0"
-        styleClass="root"
-        xmlns="http://javafx.com/javafx/23.0.1"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.example.libmaster.Controllers.AddNewLoanController">
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AddNewLoanController">
 
     <children>
-        <fx:include source="navigation.fxml"/>
+        <fx:include source="navigation.fxml" />
 
         <!-- Main Content Pane -->
         <Pane prefHeight="800.0" prefWidth="1002.0">
             <children>
-
-                <!-- Avatar -->
-                <ImageView layoutX="920.0" layoutY="16.0" fitHeight="53.0" fitWidth="46.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../image/profile.png"/>
-                    </image>
-                </ImageView>
+                <Pane prefHeight="78.0" prefWidth="965.0">
+                    <children>
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/profile.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
 
                 <!-- Title -->
                 <Label layoutX="70.0" layoutY="80.0" text="Add New Book Loan">
                     <font>
-                        <Font name="Futura" size="24.0"/>
+                        <Font name="Futura Bold" size="23.0" />
                     </font>
                 </Label>
 
                 <!-- GridPane Loan Form -->
-                <GridPane layoutX="70.0" layoutY="130.0" prefWidth="800.0" hgap="20" vgap="15"
-                          style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10;
-                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);">
+                <GridPane hgap="20" layoutX="47.0" layoutY="130.0" prefHeight="378.0" prefWidth="898.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10;                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.2, 2, 4);" vgap="15">
                     <padding>
-                        <Insets top="24" right="24" bottom="24" left="24"/>
+                        <Insets bottom="24" left="24" right="24" top="24" />
                     </padding>
 
                     <columnConstraints>
-                        <ColumnConstraints percentWidth="30"/>
-                        <ColumnConstraints percentWidth="70"/>
+                        <ColumnConstraints percentWidth="30" />
+                        <ColumnConstraints percentWidth="70" />
                     </columnConstraints>
 
                     <!-- Row 0: ISBN -->
-                    <Label text="ISBN *" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="isbnField" promptText="Enter ISBN"
-                               prefHeight="35.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="ISBN *" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <font>
+                     <Font name="Futura Bold" size="13.0" />
+                  </font></Label>
+                    <TextField fx:id="isbnField" prefHeight="35.0" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                     <!-- Row 1: Borrower ComboBox with search -->
-                    <Label text="Borrower *" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <ComboBox fx:id="borrowerComboBox" promptText="Select Borrower"
-                              prefHeight="35.0" GridPane.rowIndex="1" GridPane.columnIndex="1"
-                              editable="true"/>
+                    <Label text="Borrower *" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                  <font>
+                     <Font name="Futura Bold" size="13.0" />
+                  </font></Label>
+                    <ComboBox fx:id="borrowerComboBox" editable="true" prefHeight="35.0" prefWidth="680.0" promptText="Select Borrower" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                     <!-- Row 2: Loan Date -->
-                    <Label text="Loan Date *" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <DatePicker fx:id="loanDatePicker" promptText="Select loan date"
-                                prefHeight="35.0" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Loan Date *" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                  <font>
+                     <Font name="Futura Bold" size="13.0" />
+                  </font></Label>
+                    <DatePicker fx:id="loanDatePicker" prefHeight="35.0" prefWidth="595.0" promptText="Select loan date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                     <!-- Row 3: Return Date -->
-                    <Label text="Return Date *" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                    <DatePicker fx:id="returnDatePicker" promptText="Select return date"
-                                prefHeight="35.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label text="Return Date *" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                  <font>
+                     <Font name="Futura Bold" size="13.0" />
+                  </font></Label>
+                    <DatePicker fx:id="returnDatePicker" prefHeight="35.0" prefWidth="580.0" promptText="Select return date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                     <!-- Row 4: Comments -->
-                    <Label text="Comments" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                    <TextArea fx:id="commentsArea" promptText="Optional notes"
-                              prefHeight="80.0" wrapText="true"
-                              GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Comments" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                  <font>
+                     <Font name="Futura Bold" size="13.0" />
+                  </font></Label>
+                    <TextArea fx:id="commentsArea" prefHeight="80.0" promptText="Optional notes" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                     <!-- Row 5: Buttons -->
-                    <HBox spacing="12.0" alignment="CENTER_RIGHT"
-                          GridPane.rowIndex="5" GridPane.columnIndex="1">
+                    <HBox alignment="CENTER_RIGHT" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <children>
-                            <Button fx:id="btn_clearForm" text="Return" styleClass="btn-secondary" prefWidth="100"/>
-                            <Button fx:id="btn_addLoan" text="Add Loan" styleClass="btn-primary" prefWidth="140"/>
+                            <Button fx:id="btn_clearForm" prefHeight="31.0" prefWidth="100" styleClass="btn-secondary" text="Return">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font></Button>
+                            <Button fx:id="btn_addLoan" prefHeight="31.0" prefWidth="140" style="-fx-background-color: #87CEEB;" styleClass="btn-primary" text="Add Loan">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font></Button>
                         </children>
                     </HBox>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
 
             </children>

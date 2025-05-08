@@ -67,8 +67,7 @@
                                         <Font name="Arial Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="borrowerNameField" prefHeight="35.0" promptText="Enter borrower name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
+                                <ComboBox fx:id="borrowerNameComboBox" />
                                 <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="Arial Bold" size="18.0" />

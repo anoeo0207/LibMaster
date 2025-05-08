@@ -187,20 +187,24 @@ public class AddBookViaAPIController {
             stmt.setString(1, ISBN);
             stmt.setString(2, selectedBook.getTitle());
             stmt.setString(3, selectedBook.getAuthor());
-            stmt.setString(4,  selectedBook.getCategory());
+            stmt.setString(4, selectedBook.getCategory());
             stmt.setInt(5, quantity);
             stmt.setString(6, selectedBook.getImage());
             stmt.setString(7, selectedBook.getDescription());
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Book inserted successfully.");
+                showAlert("Success", "Book inserted successfully.", Alert.AlertType.INFORMATION);
             } else {
-                System.out.println("Failed to insert book.");
+                showAlert("Failure", "Failed to insert book.", Alert.AlertType.ERROR);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (e.getMessage().contains("Duplicate") || e.getMessage().contains("unique") || e.getErrorCode() == 1062) {
+                showAlert("Error", "ISBN already exists in the database.", Alert.AlertType.ERROR);
+            } else {
+                e.printStackTrace();
+                showAlert("Database Error", "An error occurred while inserting the book.", Alert.AlertType.ERROR);
+            }
         }
     }
-
 }

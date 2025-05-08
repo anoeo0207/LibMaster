@@ -29,6 +29,21 @@ public class DashboardController {
         Main.changeScene("addBookChoice.fxml");
     }
 
+    @FXML
+    private void handleAddMemberBtn(MouseEvent event) throws IOException {
+        Main.changeScene("addMember.fxml");
+    }
+
+    @FXML
+    private void handleAddLoanBtn(MouseEvent event) throws IOException {
+        Main.changeScene("addNewLoan.fxml");
+    }
+
+    @FXML
+    private void handleUseChatBotBtn(MouseEvent event) throws IOException {
+        Main.changeScene("libroBot.fxml");
+    }
+
     private void updateTotalBooksCard() {
         String sql = "SELECT COUNT(*) FROM books";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);

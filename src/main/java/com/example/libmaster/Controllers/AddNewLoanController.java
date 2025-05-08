@@ -1,23 +1,25 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Config.DatabaseConfig;
+import com.example.libmaster.Models.Documents.Book;
 import com.example.libmaster.Models.Form;
-import com.example.libmaster.Models.Documents.Book;  // Assuming Book class exists
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.AbstractMap.SimpleEntry; // Thêm import này
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddNewLoanController extends Form {
 
     @FXML
-    private ComboBox<String> borrowerComboBox;
+    private ComboBox<SimpleEntry<Integer, String>> borrowerComboBox;
 
     @FXML
     private TextField isbnField;
@@ -35,47 +37,62 @@ public class AddNewLoanController extends Form {
     private Button btn_addLoan;
 
     public void initialize() {
-        List<String> members = fetchMembersFromDatabase();
-        ObservableList<String> observableMembers = FXCollections.observableArrayList(members);
+        List<SimpleEntry<Integer, String>> members = fetchMembersFromDatabase();
+        ObservableList<SimpleEntry<Integer, String>> observableMembers = FXCollections.observableArrayList(members);
+        FilteredList<SimpleEntry<Integer, String>> filteredMembers = new FilteredList<>(observableMembers);
 
-        FilteredList<String> filteredMembers = new FilteredList<>(observableMembers);
         borrowerComboBox.setItems(filteredMembers);
-
         borrowerComboBox.setEditable(true);
-        borrowerComboBox.setOnKeyTyped(event -> {
-            String filter = borrowerComboBox.getEditor().getText();
-            filteredMembers.setPredicate(item -> item.toLowerCase().contains(filter.toLowerCase()));
+
+        borrowerComboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(SimpleEntry<Integer, String> entry) {
+                return entry == null ? "" : entry.getValue();
+            }
+
+            @Override
+            public SimpleEntry<Integer, String> fromString(String string) {
+                return observableMembers.stream()
+                        .filter(e -> e.getValue().equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+
+        borrowerComboBox.getEditor().setOnKeyTyped(event -> {
+            String filter = borrowerComboBox.getEditor().getText().toLowerCase();
+            filteredMembers.setPredicate(item -> item.getValue().toLowerCase().contains(filter));
         });
 
         btn_addLoan.setOnAction(event -> handleAddLoan());
     }
 
-    private List<String> fetchMembersFromDatabase() {
-        List<String> memberNames = new ArrayList<>();
-        String query = "SELECT name FROM members";
+    private List<SimpleEntry<Integer, String>> fetchMembersFromDatabase() {
+        List<SimpleEntry<Integer, String>> members = new ArrayList<>();
+        String query = "SELECT id, name FROM members";
 
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                memberNames.add(rs.getString("name"));
+                members.add(new SimpleEntry<>(rs.getInt("id"), rs.getString("name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return memberNames;
+        return members;
     }
 
     @FXML
     private void handleAddLoan() {
         String isbn = isbnField.getText().trim();
-        String borrower = borrowerComboBox.getValue();
+        SimpleEntry<Integer, String> selectedBorrower = borrowerComboBox.getValue();
         LocalDate loanDate = loanDatePicker.getValue();
         LocalDate returnDate = returnDatePicker.getValue();
         String comments = commentsArea.getText().trim();
 
-        if (isbn.isEmpty() || borrower == null || loanDate == null || returnDate == null) {
+        if (isbn.isEmpty() || selectedBorrower == null || loanDate == null || returnDate == null) {
             showAlert("Please fill in all required fields.");
             return;
         }
@@ -85,32 +102,29 @@ public class AddNewLoanController extends Form {
             return;
         }
 
-        // Validate borrower
-        if (!isBorrowerValid(borrower)) {
+        if (!isBorrowerValid(selectedBorrower.getKey())) {
             showAlert("The selected borrower does not exist in the database.");
             return;
         }
 
-        // Validate ISBN
         if (!isIsbnValid(isbn)) {
             showAlert("The entered ISBN does not exist in the books database.");
             return;
         }
 
-        // Check if the book is available for loan (using Book.isAvailable method)
         if (!Book.quantityAvailable(isbn)) {
             showAlert("This book is currently not available for loan (out of stock).");
             return;
         }
 
-        // Insert into books_loan
-        String query = "INSERT INTO book_loans (isbn, borrower_name, loan_date, return_date, comments) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO book_loans (isbn, member_id, loan_date, return_date, comments) VALUES (?, ?, ?, ?, ?)";
         String query_2 = "UPDATE books SET quantity = quantity - 1 WHERE isbn = ?";
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
-             PreparedStatement pstmt = conn.prepareStatement(query); PreparedStatement stmt = conn.prepareStatement(query_2)) {
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             PreparedStatement stmt = conn.prepareStatement(query_2)) {
 
             pstmt.setString(1, isbn);
-            pstmt.setString(2, borrower);
+            pstmt.setInt(2, selectedBorrower.getKey()); // dùng member_id
             pstmt.setDate(3, Date.valueOf(loanDate));
             pstmt.setDate(4, Date.valueOf(returnDate));
             pstmt.setString(5, comments);
@@ -131,12 +145,12 @@ public class AddNewLoanController extends Form {
         }
     }
 
-    private boolean isBorrowerValid(String borrowerName) {
-        String query = "SELECT COUNT(*) FROM members WHERE name = ?";
+    private boolean isBorrowerValid(int memberId) {
+        String query = "SELECT COUNT(*) FROM members WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, borrowerName);
+            pstmt.setInt(1, memberId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1) > 0;

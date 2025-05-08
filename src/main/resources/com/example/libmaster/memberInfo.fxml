@@ -23,8 +23,7 @@
         <!-- Main Content -->
         <Pane prefHeight="800.0" prefWidth="1002.0">
             <children>
-                <!-- Avatar -->
-                <Pane layoutX="2.0" prefHeight="78.0" prefWidth="965.0">
+                <Pane prefHeight="78.0" prefWidth="965.0">
                     <children>
                         <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -33,7 +32,6 @@
                         </ImageView>
                     </children>
                 </Pane>
-
                 <!-- Title -->
                 <Label layoutX="70.0" layoutY="90.0" text="View Member Info">
                     <font>

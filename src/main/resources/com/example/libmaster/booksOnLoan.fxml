@@ -19,12 +19,15 @@
 
         <Pane prefHeight="800.0" prefWidth="1002.0">
             <children>
-                <!-- Top bar: avatar -->
-                <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="920.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../image/profile.png" />
-                    </image>
-                </ImageView>
+                <Pane prefHeight="78.0" prefWidth="965.0">
+                    <children>
+                        <ImageView fitHeight="53.0" fitWidth="46.0" layoutX="884.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/profile.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
 
                 <!-- Titles -->
                 <Label layoutX="33.0" layoutY="98.0" text="Books On Loan">
@@ -75,7 +78,8 @@
                         <TableColumn fx:id="commentColumn" prefWidth="150.0" text="Status" />
                     </columns>
                 </TableView>
-            <Button fx:id="btn_addLoan1" layoutX="271.0" layoutY="172.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: Red;" text="Remove Loan" textFill="WHITE">
+            <Button onAction="#handleRemoveLoanBtn"
+                    fx:id="removeLoanBtn" layoutX="271.0" layoutY="172.0" prefHeight="30.0" prefWidth="215.0" style="-fx-background-color: Red;" text="Remove Loan" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                      <image>

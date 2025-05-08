@@ -1,7 +1,9 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Main;
+import com.example.libmaster.Models.Documents.Book;
 import com.example.libmaster.Models.Person.Member;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class MemberController {
     private TableColumn<Member, String> phoneColumn;
     @FXML
     private TableColumn<Member, String> emailColumn;
+    @FXML
+    private TableColumn<Member, Integer> booksBorrowedColumn;
     @FXML
     private TextField searchField;
 
@@ -89,6 +93,31 @@ public class MemberController {
                 }
             });
 
+            // Remove the duplicate "Edit" item and only keep one
+            MenuItem editItem = new MenuItem("Edit");
+            editItem.setOnAction(event -> {
+                Member selectedMember = row.getItem();
+                if (selectedMember != null) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libmaster/editMemberForm.fxml"));
+                        Parent root = loader.load();
+
+                        EditMemberController controller = loader.getController();
+                        controller.setMember(selectedMember);
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Edit Member Form");
+                        stage.setScene(new Scene(root));
+                        stage.setWidth(980);
+                        stage.setHeight(800);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.showAndWait();
+                        fetchMembers(searchField.getText().trim());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
 
             MenuItem deleteItem = new MenuItem("Delete");
             deleteItem.setOnAction(event -> {
@@ -107,7 +136,7 @@ public class MemberController {
                 }
             });
 
-            contextMenu.getItems().addAll(viewItem, deleteItem);
+            contextMenu.getItems().addAll(viewItem, editItem, deleteItem);
             row.setContextMenu(contextMenu);
 
             return row;
@@ -117,7 +146,14 @@ public class MemberController {
     public void fetchMembers(String keyword) {
         ObservableList<Member> members = FXCollections.observableArrayList();
 
-        String sql = "SELECT id, name, gender, date_of_birth, phone, email FROM members WHERE id LIKE ? OR name LIKE ? OR phone LIKE ? OR email LIKE ?";
+        String sql = """
+            SELECT m.id, m.name, m.gender, m.date_of_birth, m.phone, m.email,
+                   COUNT(bl.member_id) AS total_books
+            FROM members m
+            LEFT JOIN book_loans bl ON m.id = bl.member_id
+            WHERE m.id LIKE ? OR m.name LIKE ? OR m.phone LIKE ? OR m.email LIKE ?
+            GROUP BY m.id
+        """;
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -135,8 +171,9 @@ public class MemberController {
                 String dob = rs.getString("date_of_birth");
                 String phone = rs.getString("phone");
                 String email = rs.getString("email");
+                int totalBooks = rs.getInt("total_books");
 
-                members.add(new Member(id, name, dob, gender, phone, email));
+                members.add(new Member(id, name, dob, gender, phone, email, totalBooks));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,6 +189,7 @@ public class MemberController {
         dateOfBirthColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateOfBirth()));
         phoneColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPhone()));
         emailColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getEmail()));
+        booksBorrowedColumn.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getBookBorrowed()).asObject());
 
         searchField.setOnAction(event -> {
             String keyword = searchField.getText().trim();

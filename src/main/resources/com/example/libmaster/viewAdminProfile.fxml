@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+
+<HBox fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libmaster.Controllers.AdminProfileController">
+
+    <children>
+        <!-- Navigation Menu -->
+        <fx:include source="navigation.fxml" />
+
+        <!-- Main Content -->
+        <Pane prefHeight="800.0" prefWidth="1002.0">
+            <children>
+                <Label layoutX="323.0" layoutY="100.0" text="Admin Profile">
+                    <font>
+                        <Font name="Futura Bold" size="24.0" />
+                    </font>
+                </Label>
+
+                <VBox alignment="CENTER" layoutX="380.0" layoutY="160.0" spacing="20.0">
+                    <children>
+                        <!-- Admin Name -->
+                        <Label text="Name:" />
+                        <TextField fx:id="nameField" prefWidth="300.0" promptText="Enter name" />
+
+                        <!-- Admin Email -->
+                        <Label text="Email:" />
+                        <TextField fx:id="emailField" prefWidth="300.0" promptText="Enter email" />
+
+                        <!-- Admin Phone -->
+                        <Label text="Phone:" />
+                        <TextField fx:id="phoneField" prefWidth="300.0" promptText="Enter phone number" />
+
+                        <!-- Admin Role -->
+                        <Label text="Role:" />
+                        <TextField fx:id="roleField" prefWidth="300.0" promptText="Admin" editable="false" />
+
+                        <!-- Action Buttons -->
+                        <VBox alignment="CENTER" spacing="15.0">
+                            <Button fx:id="btn_save"  prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Save Changes" />
+                            <Button fx:id="btn_logout"  prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Logout" />
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
+</HBox>
