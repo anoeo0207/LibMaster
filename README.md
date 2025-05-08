@@ -69,7 +69,7 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 - **Xem thông tin thành viên**: Xem thông tin của thành viên được chọn.
 
-![Giao diện xem thành viên](image/viewMember.png "Giao diện xem thành viên")
+![Giao diện xem thành viên](image/viewCustomer.png "Giao diện xem thành viên")
 
 - **Xoá thành viên**: Xoá thông tin thành viên khỏi hệ thống khi không còn cần thiết (Có sẵn trên giao diện quản lý thành viên).
 
