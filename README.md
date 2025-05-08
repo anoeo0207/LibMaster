@@ -41,7 +41,7 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 ![Giao diện chỉnh sửa sách](image/editBook.png "Giao diện chỉnh sửa sách")
 
-- **Xoá sách**: Xoá sách khỏi hệ thống.
+- **Xoá sách**: Xoá sách khỏi hệ thống (Có sẵn trên giao diện thư viện).
 
 ### 📕 Quản lý Mượn sách
 - **Giao diện mượn sách**
@@ -52,7 +52,7 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 ![Giao diện thêm yêu cầu mượn sách](image/addNewBookLoan.png "Giao diện thêm yêu cầu mượn sách")
 
-- **Xoá yêu cầu mượn sách**: Hỗ trợ huỷ các yêu cầu sai hoặc không còn hiệu lực.
+- **Xoá yêu cầu mượn sách**: Hỗ trợ huỷ các yêu cầu sai hoặc không còn hiệu lực (Có sẵn trên giao diện mượn sách).
 
 ### 🧑‍🤝‍🧑 Quản lý Thành viên
 - **Giao diện quản lý thành viên**
@@ -71,7 +71,7 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 ![Giao diện xem thành viên](image/viewMember.png "Giao diện xem thành viên")
 
-- **Xoá thành viên**: Xoá thông tin thành viên khỏi hệ thống khi không còn cần thiết.
+- **Xoá thành viên**: Xoá thông tin thành viên khỏi hệ thống khi không còn cần thiết (Có sẵn trên giao diện quản lý thành viên).
 
 ### 🌐 Quản lý Yêu cầu từ Web (đang phát triển cho người dùng online)
 - **Giao diện quản lý yêu cầu từ Web App**
@@ -83,19 +83,19 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 ### 📦 Mượn các loại Item khác ngoài sách
 - **DVD**
-- *Giao diện quản lý DVD*
+- - *Giao diện quản lý DVD*
 
 ![Giao diện quản lý dvd](image/dvd.png "Giao diện quản lý dvd")
 
 
 - **Đồ án**
-- - *Giao diện đồ án*
+- - *Giao diện quản lý đồ án*
 
 ![Giao diện quản lý đồ án](image/thesis.png "Giao diện quản lý đồ án")
 
 
 - **Tạp chí**
-- *Giao diện quản lý tạp chí*
+- - *Giao diện quản lý tạp chí*
 
 ![Giao diện quản lý tạp chí](image/magazine.png "Giao diện quản lý tạp chí")
 
