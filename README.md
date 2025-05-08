@@ -8,9 +8,12 @@
 
 ### 📖 Quản lý Thư viện (Sách)
 - **Thêm sách qua API**: Tìm kiếm và thêm thông tin sách từ Google Books API.
-![Giao diện LIBRO](image/addBookAPI.png "Giao diện thêm sách qua API")
+
+![Giao diện thêm sách qua API](image/addBookAPI.png "Giao diện thêm sách qua API")
 
 - **Thêm sách thủ công**: Cho phép thêm sách theo cách nhập tay khi API không cung cấp đúng thông tin.
+
+![Giao diện thêm sách thủ công](image/addBookAPI.png "Giao diện thêm sách qua API")
 - **Chỉnh sửa sách**: Cập nhật thông tin sách hiện có.
 - **Xoá sách**: Xoá sách khỏi hệ thống.
 
@@ -34,6 +37,8 @@ Mỗi loại item có **form riêng** để nhập thông tin và thống kê t�
 ## 🤖 Chatbot AI: Libro
 
 **Libro** là trợ lý AI tích hợp dành riêng cho quản trị viên thư viện.
+
+![Chat Bot AI LIBRO](image/libroBot.png "Giao diện chat bot AI LIBRO")
 
 > **⚠️ Ghi chú quan trọng:**  
 > Libro thực chất được xây dựng dựa trên mô hình **Gemma 3 của Ollama**.  
