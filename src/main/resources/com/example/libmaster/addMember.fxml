@@ -116,7 +116,7 @@
 
                         <HBox alignment="CENTER_RIGHT" spacing="12.0">
                             <children>
-                                <Button fx:id="btn_clearForm" prefWidth="100" styleClass="btn-secondary" text="Return" />
+                                <Button onAction="#handleReturnBtn" prefWidth="100" styleClass="btn-secondary" text="Return" />
                                 <Button fx:id="btn_addMember" prefWidth="140" styleClass="btn-primary" text="Add Member" />
                             </children>
                         </HBox>

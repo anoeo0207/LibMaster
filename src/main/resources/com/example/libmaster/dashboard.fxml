@@ -188,18 +188,18 @@
             </Pane>
 
             <!-- Recent Activities -->
-            <Label layoutX="421.0" layoutY="388.0" text="Recent activities">
+            <Label layoutX="421.0" layoutY="388.0" text="New books">
                <font>
                   <Font name="Futura Bold" size="19.0" />
                </font>
             </Label>
 
-            <TableView layoutX="421.0" layoutY="429.0" prefHeight="249.0" prefWidth="519.0">
+            <TableView fx:id="newBookTable" layoutX="421.0" layoutY="429.0" prefHeight="249.0" prefWidth="519.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Order" />
-                  <TableColumn prefWidth="140.0" text="Name" />
-                  <TableColumn prefWidth="167.0" text="Book" />
-                  <TableColumn prefWidth="136.0" text="Time" />
+                  <TableColumn fx:id="LMCode" prefWidth="75.0" text="LMCode" />
+                  <TableColumn fx:id="title" prefWidth="140.0" text="Title" />
+                  <TableColumn fx:id="author" prefWidth="167.0" text="Author" />
+                  <TableColumn fx:id="category" prefWidth="136.0" text="Category" />
                </columns>
             </TableView>
          </children>

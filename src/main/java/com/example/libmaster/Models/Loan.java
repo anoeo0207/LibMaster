@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 
 public class Loan {
-    // Book-related properties (giữ nguyên)
     private final SimpleStringProperty bookTitle;
     private final SimpleStringProperty borrower;
     private final SimpleStringProperty loanDate;
@@ -14,7 +13,6 @@ public class Loan {
     private final SimpleStringProperty comment;
     private final SimpleIntegerProperty memberId;
 
-    // Item loan properties
     private final SimpleIntegerProperty loanId;
     private final SimpleStringProperty itemName;
     private final SimpleStringProperty borrowerName;
@@ -33,7 +31,6 @@ public class Loan {
         this.status = new SimpleStringProperty(status);
         this.itemId = new SimpleIntegerProperty(itemId);
 
-        // Initialize book-related fields as empty
         this.bookTitle = new SimpleStringProperty("");
         this.borrower = new SimpleStringProperty("");
         this.loanDate = new SimpleStringProperty("");

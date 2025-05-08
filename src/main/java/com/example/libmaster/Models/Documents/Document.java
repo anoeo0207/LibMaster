@@ -36,6 +36,10 @@ public abstract class Document {
         this.description = description;
     }
 
+    public Document(String title) {
+        this.title = title;
+    }
+
 
     public String getId() {
         return id;

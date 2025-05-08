@@ -60,6 +60,13 @@ public class Book extends Document {
         this.image = image;
     }
 
+    public Book(String isbn, String title, String author, String category) {
+        super(title);
+        this.isbn = isbn;
+        this.author = author;
+        this.category = category;
+    }
+
     public String getIsbn() {
         return isbn;
     }

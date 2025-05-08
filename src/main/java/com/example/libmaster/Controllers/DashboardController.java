@@ -1,8 +1,14 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Main;
+import com.example.libmaster.Models.Documents.Book;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Label;
 import java.sql.*;
@@ -14,6 +20,17 @@ public class DashboardController {
     private static final String URL = "jdbc:mysql://localhost:3306/LibMasterServer";
     private static final String USER = "root";
     private static final String PASSWORD = "";
+
+    @FXML
+    private TableView<Book> newBookTable;
+    @FXML
+    private TableColumn<Book, String> LMCode;
+    @FXML
+    private TableColumn<Book, String> title;
+    @FXML
+    private TableColumn<Book, String> author;
+    @FXML
+    private TableColumn<Book, String> category;
 
     @FXML
     private Label totalBooksLabel;
@@ -100,12 +117,44 @@ public class DashboardController {
         }
     }
 
-    // JavaFX call this method automatically
+    private void fetchBooksData() {
+        ObservableList<Book> books = FXCollections.observableArrayList();
+
+        String sql = "SELECT isbn, title, author, category FROM books ORDER BY id DESC LIMIT 5";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String lmCode = rs.getString("isbn");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String category = rs.getString("category");
+
+                books.add(new Book(lmCode, title, author, category));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        newBookTable.setItems(books);
+    }
+
+    private void initializeTableColumns() {
+        LMCode.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        category.setCellValueFactory(new PropertyValueFactory<>("category"));
+    }
+
     @FXML
     public void initialize() {
         updateTotalBooksCard();
         updateTotalRequestsCard();
         updateTotalMembersCard();
         updateTotalLoanCard();
+        initializeTableColumns();
+        fetchBooksData();
     }
 }

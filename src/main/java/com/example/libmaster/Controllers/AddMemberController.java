@@ -1,13 +1,13 @@
 package com.example.libmaster.Controllers;
 
+import com.example.libmaster.Main;
 import com.example.libmaster.Models.Form;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 
 import static com.example.libmaster.Config.DatabaseConfig.*;
 
@@ -40,6 +40,21 @@ public class AddMemberController extends Form {
             return;
         }
 
+        if (!isValidPhoneNumber(phoneNumber)) {
+            showAlert("Phone number must only contain digits.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showAlert("Email must be in the format 'example@gmail.com'.");
+            return;
+        }
+
+        if (isIdentificationDuplicate(identification)) {
+            showAlert("Identification number already exists. Please use a unique ID.");
+            return;
+        }
+
         String sql = "INSERT INTO members (name, email, phone, date_of_birth, gender, identification_num) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -66,6 +81,34 @@ public class AddMemberController extends Form {
         }
     }
 
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("[0-9]+");
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$");
+    }
+
+
+    private boolean isIdentificationDuplicate(String identification) {
+        String sql = "SELECT COUNT(*) FROM members WHERE identification_num = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, identification);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     @Override
     public void clearForm() {
         identificationField.clear();
@@ -83,5 +126,10 @@ public class AddMemberController extends Form {
         alert.setHeaderText("New Message");
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void handleReturnBtn(ActionEvent actionEvent) throws IOException {
+        Main.changeScene("member.fxml");
     }
 }
