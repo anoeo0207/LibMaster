@@ -1,8 +1,16 @@
 # 📚 LIBRO – Ứng dụng Quản lý Thư viện
 
-**LIBRO** là một ứng dụng quản lý thư viện thân thiện, dễ sử dụng, được xây dựng nhằm hỗ trợ nhân viên thư viện và quản trị viên trong việc vận hành hệ thống một cách hiệu quả, trực quan và nhanh chóng. Giao diện được thiết kế hiện đại, phản hồi nhanh, tích hợp chatbot AI hỗ trợ quản lý và tra cứu thông tin.
+**LIBRO** là một ứng dụng quản lý thư viện thân thiện, dễ sử dụng, được xây dựng nhằm hỗ trợ nhân viên thư viện và quản trị viên trong việc vận hành hệ thống một cách hiệu quả, trực quan và nhanh chóng. Giao diện được thiết kế hiện đại, phản hồi nhanh, tích hợp chatbot AI.
 
 ---
+
+## 👥 Tác giả
+
+Dự án **LIBMASTER – Library Management System** được phát triển bởi nhóm Cựu chiến binh:
+
+- **Nguyễn Hải An** – 23020581
+- **Nguyễn Xuân Quang** – 20020463
+- **Phạm Thành Luân** – 
 
 ## 📊 Dashboard
 - Màn hình chính của ứng dụng cung cấp cái nhìn tổng quan về các thông tin, thống kê của thư viện và bao gồm các phím tắt để thực hiện các thao tác một cách nhanh chóng.
@@ -93,11 +101,12 @@ Libro hỗ trợ quản trị viên với các chức năng sau:
 ---
 
 ## 📂 Công nghệ sử dụng
-- **Java** (JavaFX)
-- **MySQL** hoặc tương đương cho hệ quản trị cơ sở dữ liệu
-- **FXML** cho xây dựng giao diện
-- **Google Books API** cho việc tra cứu sách nhanh
-- **Gemma 3 (Ollama)** cho chatbot AI Libro
+- **Java** 
+- **MySQL**
+- **FXML** 
+- **Google Books API** 
+- **Gemma 3 (Ollama)** 
+- **HTML, CSS, JavaScript**
 
 ---
 
