@@ -4,24 +4,49 @@
 
 ---
 
+## 📊 Dashboard
+- Màn hình chính của ứng dụng cung cấp cái nhìn tổng quan về các thông tin, thống kê của thư viện và bao gồm các phím tắt để thực hiện các thao tác một cách nhanh chóng.
+
+![Giao diện màn hình chính](image/dashboard.png "Giao diện màn hình chính")
+
 ## 🧩 Tính năng chính
 
 ### 📖 Quản lý Thư viện (Sách)
+- **Giao diện thư viện**
+
 - **Thêm sách qua API**: Tìm kiếm và thêm thông tin sách từ Google Books API.
 
 ![Giao diện thêm sách qua API](image/addBookAPI.png "Giao diện thêm sách qua API")
 
-- **Thêm sách thủ công**: Cho phép thêm sách theo cách nhập tay khi API không cung cấp đúng thông tin.
+- **Thêm sách thủ công**: Cho phép thêm sách theo cách nhập tay.
 
-![Giao diện thêm sách thủ công](image/addBookAPI.png "Giao diện thêm sách qua API")
+![Giao diện thêm sách thủ công](image/addBookCustom.png "Giao diện thêm sách thủ công")
+
 - **Chỉnh sửa sách**: Cập nhật thông tin sách hiện có.
+
 - **Xoá sách**: Xoá sách khỏi hệ thống.
 
 ### 📕 Quản lý Mượn sách
 - **Tạo yêu cầu mượn sách**: Chọn sách, thành viên và thời gian mượn.
+
+![Giao diện thêm yêu cầu mượn sách](image/addNewBookLoan.png "Giao diện thêm yêu cầu mượn sách")
+
 - **Xoá yêu cầu mượn sách**: Hỗ trợ huỷ các yêu cầu sai hoặc không còn hiệu lực.
 
-### 🌐 Quản lý Yêu cầu từ Web (đang phát triển)
+### 🧑‍🤝‍🧑 Quản lý Thành viên
+- **Giao diện thư viện**
+
+![Giao diện quản lý thành viên](image/member.png "Giao diện quản lý thành viên")
+
+- **Thêm thành viên**: Cung cấp form nhập thông tin thành viên (họ tên, số điện thoại, email, địa chỉ…).
+
+![Giao diện thêm thành viên](image/addMember.png "Giao diện thêm thành viên")
+
+- **Chỉnh sửa thông tin thành viên**: Cập nhật thông tin thành viên hiện tại.
+
+- **Xoá thành viên**: Xoá thông tin thành viên khỏi hệ thống khi không còn cần thiết.
+
+### 🌐 Quản lý Yêu cầu từ Web (đang phát triển cho người dùng online)
 - **Chấp nhận/huỷ yêu cầu đăng ký dịch vụ thư viện** từ người dùng web (ví dụ: đăng ký tài khoản mượn sách trực tuyến).
 - **Xử lý tự động và lưu trữ hồ sơ yêu cầu** (đang trong quá trình hoàn thiện).
 
@@ -81,4 +106,4 @@ Nếu bạn muốn đóng góp ý tưởng, phát hiện lỗi, hoặc hợp tá
 
 ---
 
-**© 2025 – LIBRO Library Management System**
+**© 2025 – LIBMASTER Library Management System**
