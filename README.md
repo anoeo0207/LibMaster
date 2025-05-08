@@ -12,7 +12,12 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 - **Nguyễn Xuân Quang** – 20020463
 - **Phạm Thành Luân** – 20020542
 
-## 📊 Dashboard
+## 📊 Đăng nhập
+- Giao diện đăng nhập đơn giản, dễ dùng, dễ tiếp cận.
+
+![Giao diện đăng nhập](image/login.png "Giao diện màn hình chính")
+
+## 📊 Màn hình chính
 - Màn hình chính của ứng dụng cung cấp cái nhìn tổng quan về các thông tin, thống kê của thư viện và bao gồm các phím tắt để thực hiện các thao tác một cách nhanh chóng.
 
 ![Giao diện màn hình chính](image/dashboard.png "Giao diện màn hình chính")
@@ -21,6 +26,8 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 ### 📖 Quản lý Thư viện (Sách)
 - **Giao diện thư viện**
+
+![Giao diện thư viện](image/library.png "Giao diện thư viện")
 
 - **Thêm sách qua API**: Tìm kiếm và thêm thông tin sách từ Google Books API.
 
@@ -32,9 +39,15 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 - **Chỉnh sửa sách**: Cập nhật thông tin sách hiện có.
 
+![Giao diện chỉnh sửa sách](image/editBook.png "Giao diện chỉnh sửa sách")
+
 - **Xoá sách**: Xoá sách khỏi hệ thống.
 
 ### 📕 Quản lý Mượn sách
+- **Giao diện mượn sách**
+
+![Giao diện mượn sách](image/bookLoan.png "Giao diện mượn sách")
+
 - **Tạo yêu cầu mượn sách**: Chọn sách, thành viên và thời gian mượn.
 
 ![Giao diện thêm yêu cầu mượn sách](image/addNewBookLoan.png "Giao diện thêm yêu cầu mượn sách")
@@ -42,7 +55,7 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 - **Xoá yêu cầu mượn sách**: Hỗ trợ huỷ các yêu cầu sai hoặc không còn hiệu lực.
 
 ### 🧑‍🤝‍🧑 Quản lý Thành viên
-- **Giao diện thư viện**
+- **Giao diện quản lý thành viên**
 
 ![Giao diện quản lý thành viên](image/member.png "Giao diện quản lý thành viên")
 
@@ -52,18 +65,47 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 
 - **Chỉnh sửa thông tin thành viên**: Cập nhật thông tin thành viên hiện tại.
 
+![Giao diện chỉnh sửa thành viên](image/editMember.png "Giao diện chỉnh sửa thành viên")
+
+- **Xem thông tin thành viên**: Xem thông tin của thành viên được chọn.
+
+![Giao diện xem thành viên](image/viewMember.png "Giao diện xem thành viên")
+
 - **Xoá thành viên**: Xoá thông tin thành viên khỏi hệ thống khi không còn cần thiết.
 
 ### 🌐 Quản lý Yêu cầu từ Web (đang phát triển cho người dùng online)
+- **Giao diện quản lý yêu cầu từ Web App**
+
+![Giao diện quản lý yêu cầu](image/request.png "Giao diện quản lý yêu cầu")
+
 - **Chấp nhận/huỷ yêu cầu đăng ký dịch vụ thư viện** từ người dùng web (ví dụ: đăng ký tài khoản mượn sách trực tuyến).
 - **Xử lý tự động và lưu trữ hồ sơ yêu cầu** (đang trong quá trình hoàn thiện).
 
 ### 📦 Mượn các loại Item khác ngoài sách
 - **DVD**
+- *Giao diện quản lý DVD*
+
+![Giao diện quản lý dvd](image/dvd.png "Giao diện quản lý dvd")
+
+
 - **Đồ án**
+- - *Giao diện đồ án*
+
+![Giao diện quản lý đồ án](image/thesis.png "Giao diện quản lý đồ án")
+
+
 - **Tạp chí**
+- *Giao diện quản lý tạp chí*
+
+![Giao diện quản lý tạp chí](image/magazine.png "Giao diện quản lý tạp chí")
 
 Mỗi loại item có **form riêng** để nhập thông tin và thống kê tổng số lượng đã mượn/trả theo từng loại.
+
+![Giao diện thêm dvd](image/addDvd.png "Giao diện thêm dvd")
+
+![Giao diện thêm đồ án](image/addNewThesis.png "Giao diện thêm đồ án")
+
+![Giao diện thêm ](image/addNewMagazine.png "Giao diện quản lý tạp chí")
 
 ---
 
