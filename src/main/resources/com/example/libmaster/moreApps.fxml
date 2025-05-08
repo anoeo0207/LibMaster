@@ -57,7 +57,7 @@
                                 </image>
                             </ImageView>
                             <Label text="Zombie Apocalypse" styleClass="app-title"/>
-                            <Label text="A powerful task management tool to help you stay organized."
+                            <Label text="Zombie Apocalypse is a survival game where players navigate a world overrun by zombies, scavenging for supplies and building defenses. Your choices impact the story as you fight for survival."
                                    wrapText="true" maxWidth="220"/>
                             <Button text="Launch App" onAction="#visitAppOne"/>
                         </VBox>
@@ -70,9 +70,9 @@
                                 </image>
                             </ImageView>
                             <Label text="PayPilot" styleClass="app-title"/>
-                            <Label text="Analyze your financial data and make better decisions."
+                            <Label text="PayPilot helps users manage their finances by tracking expenses, creating budgets, and providing real-time financial insights. It connects with bank accounts and payment platforms for seamless tracking."
                                    wrapText="true" maxWidth="220"/>
-                            <Button text="Launch App" onAction="#visitAppTwo"/>
+                            <Button text="Visit Web App" onAction="#visitAppTwo"/>
                         </VBox>
 
                         <!-- App 3 -->
@@ -83,7 +83,7 @@
                                 </image>
                             </ImageView>
                             <Label text="SONIX" styleClass="app-title"/>
-                            <Label text="Collaborate with your team in real-time with ease."
+                            <Label text="Sonix is a music streaming app offering personalized playlists, high-quality audio, and smart recommendations. Discover new artists and enjoy your favorite tunes on-the-go."
                                    wrapText="true" maxWidth="220"/>
                             <Button text="Launch App" onAction="#visitAppThree"/>
                         </VBox>

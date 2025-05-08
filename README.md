@@ -110,8 +110,14 @@ Libro hỗ trợ quản trị viên với các chức năng sau:
 
 ---
 
-## 📞 Liên hệ & Góp ý
-Nếu bạn muốn đóng góp ý tưởng, phát hiện lỗi, hoặc hợp tác phát triển, vui lòng liên hệ qua email dự án.
+## 📂 Mã Nguồn Tham Khảo
+
+Dự án LIBMASTER có tham khảo, xin ý tưởng mã nguồn từ:
+
+- Youtube Mintype: Mã nguồn lấy phản hồi từ AI Bot của Ollama
+- Thạc Sĩ Nguyễn Hải Long UET
+- ChatGPT
+- V0.dev
 
 ---
 

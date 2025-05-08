@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .coming-soon {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 2rem;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+        
+        .pulse {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">TechNova</h1>
+        <div class="divider"></div>
+        <p class="message">
+            This application is currently under development.
+            <br>
+            We're working hard to create something amazing for you.
+        </p>
+        <div class="pulse">
+            <p class="coming-soon">Hoping to see you soon!</p>
+        </div>
+    </div>
+</body>
+</html>
