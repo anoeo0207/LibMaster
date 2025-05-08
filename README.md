@@ -118,7 +118,7 @@ Mỗi loại item có **form riêng** để nhập thông tin và thống kê t�
 > **⚠️ Ghi chú quan trọng:**  
 > Libro thực chất được xây dựng dựa trên mô hình **Gemma 3 của Ollama**.  
 > Mọi bản quyền, công sức phát triển đều thuộc về nhóm tác giả của mô hình **Gemma 3**.  
-> Mã nguồn lấy phản hồi từ bot được tham khảo và điều chỉnh từ kênh **How to Create Bot**.
+> Mã nguồn lấy phản hồi từ bot được tham khảo và điều chỉnh từ kênh **Mintype**.
 
 ### 📌 Mục đích sử dụng
 > *Chatbot Libro không sử dụng hay huấn luyện trên dữ liệu nội bộ của thư viện.*
