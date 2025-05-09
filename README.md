@@ -1,6 +1,6 @@
-# 📚 LIBRO – Ứng dụng Quản lý Thư viện
+# 📚 LIBMASTER – Ứng dụng Quản lý Thư viện
 
-**LIBRO** là một ứng dụng quản lý thư viện thân thiện, dễ sử dụng, được xây dựng nhằm hỗ trợ nhân viên thư viện và quản trị viên trong việc vận hành hệ thống một cách hiệu quả, trực quan và nhanh chóng. Giao diện được thiết kế hiện đại, phản hồi nhanh, tích hợp chatbot AI.
+**LIBMASTER** là một ứng dụng quản lý thư viện thân thiện, dễ sử dụng, được xây dựng nhằm hỗ trợ quản trị viên trong việc vận hành hệ thống một cách hiệu quả, trực quan và nhanh chóng. Giao diện được thiết kế hiện đại, phản hồi nhanh, tích hợp chatbot AI.
 
 ---
 
