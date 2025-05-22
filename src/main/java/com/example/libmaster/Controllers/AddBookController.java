@@ -34,7 +34,46 @@ public class AddBookController {
 
     @FXML
     private void initialize() {
-        categoryBox.getItems().addAll("Fiction", "Non-Fiction", "Science", "History", "Fantasy", "Other");
+        categoryBox.getItems().addAll(
+                "Literature",
+                "Poetry",
+                "Drama",
+                "Fiction",
+                "Romance",
+                "Thriller",
+                "Science Fiction",
+                "Fantasy",
+                "Mystery",
+                "Horror",
+                "Science",
+                "Mathematics",
+                "Physics",
+                "Chemistry",
+                "Biology",
+                "Computer Science",
+                "History",
+                "Geography",
+                "Archaeology",
+                "Children",
+                "Young Adult",
+                "Psychology",
+                "Sociology",
+                "Philosophy",
+                "Religion",
+                "Spirituality",
+                "Language Learning",
+                "English Language",
+                "French Language",
+                "Chinese Language",
+                "Economics",
+                "Business & Management",
+                "Marketing",
+                "Art",
+                "Music",
+                "Photography",
+                "Design",
+                "Other"
+        );
         btn_selectImage.setOnAction(event -> chooseImage());
         btn_addBook.setOnAction(event -> addBookToDatabase());
     }

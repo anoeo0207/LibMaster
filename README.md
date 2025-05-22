@@ -82,32 +82,23 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 - **Xử lý tự động và lưu trữ hồ sơ yêu cầu** (đang trong quá trình hoàn thiện).
 
 ### 📦 Mượn các loại Item khác ngoài sách
-- **DVD**
-- - *Giao diện quản lý DVD*
+- **DVD** – *Giao diện quản lý DVD*
 
 ![Giao diện quản lý dvd](image/dvd.png "Giao diện quản lý dvd")
 
-
-- **Đồ án**
-- - *Giao diện quản lý đồ án*
+- **Đồ án** – *Giao diện quản lý đồ án*
 
 ![Giao diện quản lý đồ án](image/thesis.png "Giao diện quản lý đồ án")
 
-
-- **Tạp chí**
-- - *Giao diện quản lý tạp chí*
+- **Tạp chí** – *Giao diện quản lý tạp chí*
 
 ![Giao diện quản lý tạp chí](image/magazine.png "Giao diện quản lý tạp chí")
 
 Mỗi loại item có **form riêng** để nhập thông tin và thống kê tổng số lượng đã mượn/trả theo từng loại.
 
 ![Giao diện thêm dvd](image/addDvd.png "Giao diện thêm dvd")
-
 ![Giao diện thêm đồ án](image/addNewThesis.png "Giao diện thêm đồ án")
-
-![Giao diện thêm ](image/addNewMagazine.png "Giao diện quản lý tạp chí")
-
----
+![Giao diện thêm tạp chí](image/addNewMagazine.png "Giao diện quản lý tạp chí")
 
 ## 🤖 Chatbot AI: Libro
 
@@ -121,7 +112,6 @@ Mỗi loại item có **form riêng** để nhập thông tin và thống kê t�
 > Mã nguồn lấy phản hồi từ bot được tham khảo và điều chỉnh từ kênh **Mintype**.
 
 ### 📌 Mục đích sử dụng
-> *Chatbot Libro không sử dụng hay huấn luyện trên dữ liệu nội bộ của thư viện.*
 
 Libro hỗ trợ quản trị viên với các chức năng sau:
 - 🧠 Trả lời câu hỏi liên quan đến nghiệp vụ thư viện (ví dụ: phân loại sách, quy trình xử lý mượn trả…)
@@ -133,24 +123,18 @@ Libro hỗ trợ quản trị viên với các chức năng sau:
 
 > Tốc độ phản hồi trung bình do AI đang chạy trên môi trường **local**, phù hợp cho nhu cầu tư vấn cơ bản.
 
----
-
 ## 🎨 Giao diện
 - Thân thiện, dễ sử dụng, tối ưu cho thao tác quản trị viên
 - Tốc độ phản hồi giao diện nhanh
 - Có hỗ trợ hiển thị bảng, thống kê, biểu mẫu
 
----
-
 ## 📂 Công nghệ sử dụng
-- **Java** 
+- **Java**
 - **MySQL**
-- **FXML** 
-- **Google Books API** 
-- **Gemma 3 (Ollama)** 
+- **FXML**
+- **Google Books API**
+- **Gemma 3 (Ollama)**
 - **HTML, CSS, JavaScript**
-
----
 
 ## 📂 Mã Nguồn Tham Khảo
 
@@ -160,6 +144,75 @@ Dự án LIBMASTER có tham khảo, xin ý tưởng mã nguồn từ:
 - Thạc Sĩ Nguyễn Hải Long UET
 - ChatGPT
 - V0.dev
+
+---
+
+## 🏷️ Hướng dẫn điền mã `LMcode`
+
+`LMcode` (Library Master Code) là mã định danh duy nhất dành cho **mọi đầu sách, tạp chí, DVD, đồ án…** trong hệ thống LIBMASTER. Mỗi `LMcode` giúp quản trị viên quản lý item một cách hệ thống, phân loại rõ ràng theo thể loại và thứ tự nhập kho.
+
+### 🔢 Cấu trúc mã `LMcode`
+
+```
+[TT][SSSSS][AA]
+```
+
+- `TT`: Mã thể loại gồm **2 chữ số** (theo bảng phân loại của LIBMASTER)
+- `SSSSS`: Mã định danh của sách (gồm **5 chữ số**)
+- `AA`: Số lượng của sách (gồm **2 chữ số**)
+
+
+### 📂 Bảng mã thể loại (TT)
+
+| TT | Genre                 |
+|----|-----------------------|
+| 10 | Literature            |
+| 11 | Poetry                |
+| 12 | Drama                 |
+| 13 | Fiction               |
+| 14 | Romance               |
+| 15 | Thriller              |
+| 16 | Science Fiction       |
+| 17 | Fantasy               |
+| 18 | Mystery               |
+| 19 | Horror                |
+| 20 | Science               |
+| 21 | Mathematics           |
+| 22 | Physics               |
+| 23 | Chemistry             |
+| 24 | Biology               |
+| 25 | Computer Science      |
+| 30 | History               |
+| 31 | Geography             |
+| 32 | Archaeology           |
+| 40 | Children              |
+| 41 | Young Adult           |
+| 50 | Psychology            |
+| 51 | Sociology             |
+| 52 | Philosophy            |
+| 60 | Religion              |
+| 61 | Spirituality          |
+| 70 | Language Learning     |
+| 71 | English Language      |
+| 72 | French Language       |
+| 73 | Chinese Language      |
+| 80 | Economics             |
+| 81 | Business & Management |
+| 82 | Marketing             |
+| 90 | Art                   |
+| 91 | Music                 |
+| 92 | Photography           |
+| 93 | Design                |
+| 99 | Other                 |
+
+### 📝 Cách điền `LMCode` khi thêm sách thủ công
+
+1. **Xác định thể loại** của sách (theo bảng trên)
+2. **Tra thứ tự hiện tại** trong bảng mã của thể loại đó
+3. **Xem số lượng** của sách đó
+
+**Ví dụ:** Bạn thêm 6 cuốn sách giống nhau và thuộc thể loại Fantasy (TT = 17)  
+→ `LMCode = 171234506`
 
 ---
 

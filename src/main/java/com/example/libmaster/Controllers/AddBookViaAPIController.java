@@ -145,9 +145,9 @@ public class AddBookViaAPIController {
 
     private void openDialog(Book selectedBook) {
         TextInputDialog isbnDialog = new TextInputDialog();
-        isbnDialog.setTitle("Enter ISBN");
-        isbnDialog.setHeaderText("Enter ISBN for: " + selectedBook.getTitle());
-        isbnDialog.setContentText("ISBN:");
+        isbnDialog.setTitle("Enter LMCode");
+        isbnDialog.setHeaderText("Enter LMCode for: " + selectedBook.getTitle());
+        isbnDialog.setContentText("LMCode:");
 
         Optional<String> isbnResult = isbnDialog.showAndWait();
         isbnResult.ifPresent(isbn -> {
