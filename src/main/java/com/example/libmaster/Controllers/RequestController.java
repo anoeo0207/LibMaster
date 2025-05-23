@@ -1,7 +1,6 @@
 package com.example.libmaster.Controllers;
 
 import com.example.libmaster.Config.DatabaseConfig;
-import com.example.libmaster.Models.Documents.Book;
 import com.example.libmaster.Models.Person.User;
 import com.example.libmaster.Models.Request;
 import javafx.beans.property.SimpleObjectProperty;
@@ -106,7 +105,6 @@ public class RequestController {
             newQuantity = currentQuantity + 1;
         } else if (type.equals("Borrow Books")) {
             if (currentQuantity <= 0) {
-                System.out.println("No books left to borrow.");
                 return;
             }
             newQuantity = currentQuantity - 1;

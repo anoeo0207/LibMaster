@@ -110,8 +110,13 @@ public class AddNewLoanController extends Form {
             return;
         }
 
+        if (loanDate.isAfter(returnDate)) {
+            showAlert("Loan date must not be after return date.");
+            return;
+        }
+
         if (!isIsbnValid(isbn)) {
-            showAlert("The entered ISBN does not exist in the books database.");
+            showAlert("The entered LMCode does not exist in the books database.");
             return;
         }
 

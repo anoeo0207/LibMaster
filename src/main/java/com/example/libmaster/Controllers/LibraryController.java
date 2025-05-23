@@ -205,7 +205,7 @@ public class LibraryController {
             if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
                 image = new Image(imageUrl, true);
             } else {
-                image = new Image("file:" + imageUrl, true);
+                image = new Image(imageUrl, true);
             }
             bookCoverImage.setImage(image);
         } else {

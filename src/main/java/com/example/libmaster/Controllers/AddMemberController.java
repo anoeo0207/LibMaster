@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 
 import static com.example.libmaster.Config.DatabaseConfig.*;
 
@@ -40,8 +41,19 @@ public class AddMemberController extends Form {
             return;
         }
 
+        if (!fullName.matches("[a-zA-Z\\s]+")) {
+            showAlert("Name must only contain characters.");
+            return;
+        }
+
         if (!isValidPhoneNumber(phoneNumber)) {
             showAlert("Phone number must only contain digits.");
+            return;
+        }
+
+        LocalDate dateOfBirthLocal = LocalDate.parse(dateOfBirth);
+        if (dateOfBirthLocal.isAfter(LocalDate.now())) {
+            showAlert("Please enter valid date of birth");
             return;
         }
 
@@ -88,7 +100,6 @@ public class AddMemberController extends Form {
     private boolean isValidEmail(String email) {
         return email.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$");
     }
-
 
     private boolean isIdentificationDuplicate(String identification) {
         String sql = "SELECT COUNT(*) FROM members WHERE identification_num = ?";

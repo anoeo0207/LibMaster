@@ -106,6 +106,11 @@ public class AddBookController {
             return;
         }
 
+        if (!isbn.matches("\\d{9}")) {
+            showAlert(Alert.AlertType.ERROR, "LMCode must have exactly 9 characters.");
+            return;
+        }
+
         int quantity;
         try {
             quantity = Integer.parseInt(quantityStr);

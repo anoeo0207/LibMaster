@@ -133,6 +133,7 @@ public class AddBookViaAPIController {
 
         fetchBookData("1");
 
+
         searchField.setOnAction(event -> {
             String keyword = searchField.getText().replaceAll("\\s+", "");
             if (!keyword.isEmpty()) {
@@ -158,12 +159,17 @@ public class AddBookViaAPIController {
 
             Optional<String> quantityResult = quantityDialog.showAndWait();
             quantityResult.ifPresent(quantity -> {
-                if (quantity.matches("\\d+")) {
-                    int quantityInt = Integer.parseInt(quantity);
-                    insertBookIntoDatabase(selectedBook, quantityInt, isbn);
+                if (!isbn.matches("\\d{9}")) {
+                    showAlert(Alert.AlertType.ERROR, "LMCode must have exactly 9 characters.");
                 } else {
-                    showAlert("Error", "Please enter a valid number", Alert.AlertType.ERROR);
+                    if (quantity.matches("\\d+")) {
+                        int quantityInt = Integer.parseInt(quantity);
+                        insertBookIntoDatabase(selectedBook, quantityInt, isbn);
+                    } else {
+                        showAlert("Error", "Please enter a valid number", Alert.AlertType.ERROR);
+                    }
                 }
+
             });
         });
     }
@@ -203,5 +209,13 @@ public class AddBookViaAPIController {
                 showAlert("Database Error", "An error occurred while inserting the book.", Alert.AlertType.ERROR);
             }
         }
+    }
+
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle("Notification");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

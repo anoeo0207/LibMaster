@@ -34,13 +34,22 @@ public class BooksOnLoanController {
         commentColumn.setCellValueFactory(new PropertyValueFactory<>("comment"));
 
         loadLoanData();
-        onSearch();
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                loadLoanData();
+            } else {
+                fetchLoans(newValue.trim());
+            }
+        });
     }
 
     private void loadLoanData() {
-        String sql = "SELECT bl.isbn, m.name AS borrower_name, bl.loan_date, bl.return_date, bl.comments, m.id AS member_id " +
+        String sql = "SELECT bl.isbn, b.title AS book_title, m.name AS borrower_name, " +
+                "bl.loan_date, bl.return_date, bl.comments, m.id AS member_id " +
                 "FROM book_loans bl " +
-                "JOIN members m ON bl.member_id = m.id";
+                "JOIN members m ON bl.member_id = m.id " +
+                "JOIN books b ON bl.isbn = b.isbn";
 
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
              Statement stmt = conn.createStatement();
@@ -49,14 +58,14 @@ public class BooksOnLoanController {
             loans.clear();
 
             while (rs.next()) {
-                String isbn = rs.getString("isbn");
+                String bookTitle = rs.getString("book_title");
                 String borrower = rs.getString("borrower_name");
                 String loanDate = rs.getString("loan_date");
                 String returnDate = rs.getString("return_date");
                 String comment = rs.getString("comments");
                 int memberId = rs.getInt("member_id");
 
-                loans.add(new Loan(isbn, borrower, loanDate, returnDate, comment, memberId));
+                loans.add(new Loan(bookTitle, borrower, loanDate, returnDate, comment, memberId));
             }
 
             loanTableView.setItems(loans);
@@ -69,51 +78,6 @@ public class BooksOnLoanController {
     @FXML
     private void handleAddNewLoanBtn() throws IOException {
         Main.changeScene("addNewLoan.fxml");
-    }
-
-    public void fetchLoans(String keyword) {
-        ObservableList<Loan> filteredLoans = FXCollections.observableArrayList();
-
-        String sql = "SELECT bl.isbn, m.name AS borrower_name, bl.loan_date, bl.return_date, bl.comments, m.id AS member_id " +
-                "FROM book_loans bl " +
-                "JOIN members m ON bl.member_id = m.id " +
-                "WHERE bl.isbn LIKE ? OR m.name LIKE ?";
-
-        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            String searchQuery = "%" + keyword + "%";
-            stmt.setString(1, searchQuery);
-            stmt.setString(2, searchQuery);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    String isbn = rs.getString("isbn");
-                    String borrower = rs.getString("borrower_name");
-                    String loanDate = rs.getString("loan_date");
-                    String returnDate = rs.getString("return_date");
-                    String comment = rs.getString("comments");
-                    int memberId = rs.getInt("member_id");
-
-                    filteredLoans.add(new Loan(isbn, borrower, loanDate, returnDate, comment, memberId));
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        loanTableView.setItems(filteredLoans);
-    }
-
-    @FXML
-    private void onSearch() {
-        String param = searchField.getText().trim();
-        if (!param.isEmpty()) {
-            fetchLoans(param);
-        } else {
-            loadLoanData();
-        }
     }
 
     @FXML
@@ -131,7 +95,7 @@ public class BooksOnLoanController {
 
     private void deleteLoanFromDatabase(Loan loan) {
         String deleteSql = "DELETE FROM book_loans WHERE isbn = ? AND member_id = ?";
-        String updateSql = "UPDATE books SET quantity = quantity + 1 WHERE isbn = ?";
+        String updateSql = "UPDATE books SET quantity = quantity + 1 WHERE title = ?";
 
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
              PreparedStatement deleteStmt = conn.prepareStatement(deleteSql);
@@ -157,12 +121,49 @@ public class BooksOnLoanController {
         }
     }
 
-
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void fetchLoans(String keyword) {
+        ObservableList<Loan> filteredLoans = FXCollections.observableArrayList();
+
+        String sql = "SELECT bl.isbn, b.title AS book_title, m.name AS borrower_name, " +
+                "bl.loan_date, bl.return_date, bl.comments, m.id AS member_id " +
+                "FROM book_loans bl " +
+                "JOIN members m ON bl.member_id = m.id " +
+                "JOIN books b ON bl.isbn = b.isbn " +
+                "WHERE bl.isbn LIKE ? OR b.title LIKE ? OR m.name LIKE ?";
+
+        try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            String searchQuery = "%" + keyword + "%";
+            stmt.setString(1, searchQuery);
+            stmt.setString(2, searchQuery);
+            stmt.setString(3, searchQuery);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String bookTitle = rs.getString("book_title");
+                    String borrower = rs.getString("borrower_name");
+                    String loanDate = rs.getString("loan_date");
+                    String returnDate = rs.getString("return_date");
+                    String comment = rs.getString("comments");
+                    int memberId = rs.getInt("member_id");
+
+                    filteredLoans.add(new Loan(bookTitle, borrower, loanDate, returnDate, comment, memberId));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        loanTableView.setItems(filteredLoans);
     }
 }
