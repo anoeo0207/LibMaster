@@ -11,11 +11,6 @@ public class Thesis extends Document {
         this.quantity = quantity;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Thesis: " + title + " | Author: " + author + " | University: " + university);
-    }
-
     public String getAuthor() {
         return author;
     }

@@ -16,11 +16,6 @@ public class Magazine extends Document {
         this.publisher = publisher;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Magazine: " + title + " | Publisher: " + publisher);
-    }
-
     public String getPublisher() {
         return publisher;
     }

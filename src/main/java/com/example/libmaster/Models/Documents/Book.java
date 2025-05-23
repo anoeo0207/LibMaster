@@ -83,11 +83,6 @@ public class Book extends Document {
         return image;
     }
 
-    @Override
-    public void showInfo() {
-
-    }
-
     public static boolean quantityAvailable(String isbn) {
         String query = "SELECT quantity FROM books WHERE isbn = ?";
         try (Connection conn = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);

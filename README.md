@@ -12,6 +12,12 @@ Dự án **LIBMASTER – Library Management System** được phát triển bở
 - **Nguyễn Xuân Quang** – 20020463
 - **Phạm Thành Luân** – 20020542
 
+## 🧾 Class diagram
+
+![Person](image/person_model.png "Person")
+
+![Document](image/diagram.png "Document")
+
 ## 📊 Đăng nhập
 - Giao diện đăng nhập đơn giản, dễ dùng, dễ tiếp cận.
 

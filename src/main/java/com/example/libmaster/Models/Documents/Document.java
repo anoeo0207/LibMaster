@@ -1,6 +1,6 @@
 package com.example.libmaster.Models.Documents;
 
-public abstract class Document {
+public class Document {
     protected String id;
     protected String title;
     protected int quantity;
@@ -52,8 +52,6 @@ public abstract class Document {
     public int getQuantity() {
         return quantity;
     }
-
-    public abstract void showInfo();
 
     public String getDescription() {
         return description;

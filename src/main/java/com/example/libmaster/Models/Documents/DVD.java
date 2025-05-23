@@ -18,11 +18,6 @@ public class DVD extends Document {
         this.quantity = quantity;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("DVD: " + title + " | Director: " + director + " | Duration: " + duration + " minutes");
-    }
-
     public String getDirector() {
         return director;
     }
